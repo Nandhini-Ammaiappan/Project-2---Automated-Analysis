@@ -3,7 +3,8 @@
 # dependencies = [
 #   "httpx",
 #   "pandas",
-#   "requests"
+#   "requests",
+#   "load_dotenv"
 # ]
 # ///
 
@@ -64,7 +65,9 @@ def main():
         sys.exit(1)
 
     csv_filename = sys.argv[1]
-    df = load_csv(csv_filename)
+    #df = load_csv(csv_filename)
+    print(sys.argv[1])
+    df = load_csv("C:\Users\Nandhini\Downloads\media.csv")
     analysis_story = analyze_data(df)
     
     save_markdown("README.md", analysis_story)
