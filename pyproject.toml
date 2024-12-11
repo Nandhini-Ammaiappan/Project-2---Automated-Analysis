@@ -1,7 +1,7 @@
 [project]
 name = "example"
 version = "0.1.0"
-dependencies = ["httpx","pandas"]
+dependencies = ["httpx","pandas","requests"]
 
 [[index]]
 url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"

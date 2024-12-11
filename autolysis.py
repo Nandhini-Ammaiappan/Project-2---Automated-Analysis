@@ -3,16 +3,17 @@
 # dependencies = [
 #   "httpx",
 #   "pandas",
+#   "requests"
 # ]
 # ///
 
 import requests
 import os
+import sys
+import pandas as pd
 from dotenv import load_dotenv
 
-#api_key = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZjEwMDI0NjlAZHMuc3R1ZHkuaWl0bS5hYy5pbiJ9.fi0afXSQetfhBPAgCm1rEeiIoYBlFzQi-t1W4Q12CV0"
 api_key = os.environ["AIPROXY_TOKEN"] 
-print(api_key)
 response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
@@ -25,3 +26,49 @@ response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/comp
     )
 result = response.json()
 print(result)
+
+def load_csv(file_path):
+    """Load a CSV file into a pandas DataFrame."""
+    df = pd.read_csv(file_path)
+    return df
+
+def analyze_data(df):
+    """Perform basic analysis on the DataFrame and create a story."""
+    shape = df.shape
+    columns = df.columns.tolist()
+    description = df.describe()
+    null_values = df.isnull().sum()
+    
+    story = f"# Data Analysis Report\n\n"
+    story += f"## Dataset Information\n\n"
+    story += f"The dataset contains {shape[0]} rows and {shape[1]} columns.\n\n"
+    story += f"### Columns:\n\n"
+    for column in columns:
+        story += f"- {column}\n"
+    story += f"\n## Summary Statistics\n\n"
+    story += f"{description.to_markdown()}\n\n"
+    story += f"## Missing Values\n\n"
+    for column, num_missing in null_values.items():
+        story += f"- {column}: {num_missing} missing values\n"
+    
+    return story
+
+def save_markdown(file_path, content):
+    """Save the analysis content to a Markdown file."""
+    with open(file_path, 'w') as f:
+        f.write(content)
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: uv run autolysis.py <csv_filename>")
+        sys.exit(1)
+
+    csv_filename = sys.argv[1]
+    df = load_csv(csv_filename)
+    analysis_story = analyze_data(df)
+    
+    save_markdown("README.md", analysis_story)
+    print("Analysis complete. Check README.md for the results.")
+
+if __name__ == "__main__":
+    main()
