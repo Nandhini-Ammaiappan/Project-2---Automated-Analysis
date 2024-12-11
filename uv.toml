@@ -1,0 +1,4 @@
+[[index]]
+url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
+default = true
+UV_ENV_FILE = "environ.env" 
