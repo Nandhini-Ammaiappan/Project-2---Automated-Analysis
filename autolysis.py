@@ -4,7 +4,8 @@
 #   "httpx",
 #   "pandas",
 #   "requests",
-#   "load_dotenv"
+#   "load_dotenv",
+#   "tabulate"
 # ]
 # ///
 
