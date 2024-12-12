@@ -64,7 +64,7 @@ def save_markdown(file_path, content):
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
 
-    folder_name = file_path.split('.')
+    folder_name = file_path[0].split('.')
 
     os.chdir(repo_path)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
