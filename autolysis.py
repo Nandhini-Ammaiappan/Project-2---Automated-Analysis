@@ -20,19 +20,18 @@ import subprocess
 load_dotenv()
 
 api_key = os.environ["AIPROXY_TOKEN"] 
-'''response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "How do I use a proxy with ChatGPT?"},
+            {"role": "user", "content": "Need you to analyse a csv file and provide its statistical information"},
             ]
         }
     )
 result = response.json()
-print(result)
-'''
+
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
     df = pd.read_csv(file_path,encoding='latin-1')
@@ -89,10 +88,23 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: uv run autolysis.py <csv_filename>")
         sys.exit(1)
+    else:
+        print(f"{sys.argv[1]} is the file provided for analysis.")
 
     csv_filename = sys.argv[1]
     df = load_csv(csv_filename)
-    print(sys.argv[1])
+    sample_df = df.head().to_json(orient='records').
+    response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+    headers={"Authorization": f"Bearer {api_key}"},
+    json={
+        "model": "gpt-4o-mini",
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Need you to analyse a csv file and provide its statistical information"},
+            ]
+        }
+    )
+    result = response.json()
     analysis_story = analyze_data(df,csv_filename)
     save_markdown(csv_filename, analysis_story)
     print("Analysis complete. Check README.md for the results.")
