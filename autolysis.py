@@ -6,7 +6,7 @@
 #   "requests",
 #   "load_dotenv",
 #   "tabulate",
-#   "Github"
+#   "github"
 # ]
 # ///
 
