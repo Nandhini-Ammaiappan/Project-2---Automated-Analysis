@@ -12,6 +12,7 @@ import requests
 import os
 import sys
 import pandas as pd
+import tabulate
 from dotenv import load_dotenv
 
 load_dotenv()
