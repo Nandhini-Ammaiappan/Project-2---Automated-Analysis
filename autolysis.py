@@ -73,7 +73,7 @@ def save_markdown(file_path, content):
     repo = g.get_user().get_repo(REPO_NAME)
 
     repo.create_file("README.md", "Create README.md", content)
- '''   url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
+    '''   url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
 
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
@@ -92,8 +92,9 @@ def save_markdown(file_path, content):
     else:
         print('Failed to create folder:', response.json())
 
- '''   #with open(file_path, 'w') as f:
-     #   f.write(content)
+    '''   
+    #with open(file_path, 'w') as f:
+    #   f.write(content)
 
 def main():
     if len(sys.argv) != 2:
