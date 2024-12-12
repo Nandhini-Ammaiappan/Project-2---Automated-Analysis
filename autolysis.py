@@ -5,7 +5,8 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate"
+#   "tabulate",
+#   "github"
 # ]
 # ///
 
@@ -15,6 +16,7 @@ import sys
 import pandas as pd
 import base64
 from dotenv import load_dotenv
+from github import Github
 
 load_dotenv()
 
@@ -62,14 +64,17 @@ def save_markdown(file_path, content):
     """Save the analysis content to a Markdown file."""
     GITHUB_TOKEN = os.environ["GITHUB"]
     REPO_OWNER = "Nandhini-Ammaiappan"
-    REPO_NAME = "Project-2---Automated-Analysis"
+    REPO_NAME = "Project-2---Automated-Analysis/{file_path}"
     NEW_FOLDER_PATH = "file_path"
 
-    # Create a file in the new folder to create the directory
-    file_content = content
-    file_content_encoded = base64.b64encode(file_content.encode()).decode()
+    # Connect to GitHub
+    g = Github(GITHUB_TOKEN)
+    
+    # Get the repository
+    repo = g.get_user().get_repo(REPO_NAME)
 
-    url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
+    repo.create_file("README.md", "Create README.md", content)
+ '''   url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
 
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
@@ -88,7 +93,7 @@ def save_markdown(file_path, content):
     else:
         print('Failed to create folder:', response.json())
 
-    #with open(file_path, 'w') as f:
+ '''   #with open(file_path, 'w') as f:
      #   f.write(content)
 
 def main():
