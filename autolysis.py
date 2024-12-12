@@ -5,9 +5,8 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate",
-#   "subprocess"
-# ]
+#   "tabulate"
+#  ]
 # ///
 
 import requests
