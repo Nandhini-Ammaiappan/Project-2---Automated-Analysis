@@ -12,6 +12,7 @@
 import requests
 import os
 import sys
+import re
 import pandas as pd
 from dotenv import load_dotenv
 import subprocess
@@ -91,8 +92,10 @@ def main():
     else:
         print(f"{sys.argv[1]} is the file provided for analysis.")
 
-    csv_filename = sys.argv[2]
-    df = load_csv(csv_filename)
+    csv_filename = sys.argv[1]
+    fname = re.split(r'/\[a-zA-Z0-9]*.csv',csv_filename)
+    print(fname)
+    df = load_csv(fname)
     sample_df = df.head().to_json(orient='records')
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
