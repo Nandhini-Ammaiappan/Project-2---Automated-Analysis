@@ -5,7 +5,8 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate"
+#   "tabulate",
+#   "base64"
 # ]
 # ///
 
@@ -13,7 +14,7 @@ import requests
 import os
 import sys
 import pandas as pd
-#import tabulate
+import base64
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -60,8 +61,36 @@ def analyze_data(df,fn):
 
 def save_markdown(file_path, content):
     """Save the analysis content to a Markdown file."""
-    with open(file_path, 'w') as f:
-        f.write(content)
+    GITHUB_TOKEN = os.environ["GITHUB"]
+    REPO_OWNER = "Nandhini-Ammaiappan"
+    REPO_NAME = "Project-2---Automated-Analysis"
+    NEW_FOLDER_PATH = "file_path"
+
+    # Create a file in the new folder to create the directory
+    file_content = content
+    file_content_encoded = base64.b64encode(file_content.encode()).decode()
+
+    url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md
+
+    headers = {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    data = {
+        'message': 'Create new folder',
+        'content': file_content_encoded
+    }
+
+    response = requests.put(url, headers=headers, json=data)
+
+    if response.status_code == 201:
+        print('Folder created successfully.')
+    else:
+        print('Failed to create folder:', response.json())
+
+    #with open(file_path, 'w') as f:
+     #   f.write(content)
 
 def main():
     if len(sys.argv) != 2:
@@ -72,8 +101,7 @@ def main():
     df = load_csv(csv_filename)
     print(sys.argv[1])
     analysis_story = analyze_data(df,csv_filename)
-    readme = \csv_filename\README.md
-    save_markdown(readme, analysis_story)
+    save_markdown(csv_filename, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
