@@ -32,7 +32,7 @@ print(result)
 '''
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
 def analyze_data(df):
@@ -67,9 +67,8 @@ def main():
         sys.exit(1)
 
     csv_filename = sys.argv[1]
-    #df = load_csv(csv_filename)
+    df = load_csv(csv_filename)
     print(sys.argv[1])
-    df = load_csv(r"C:\Users\Nandhini\Downloads\media.csv")
     analysis_story = analyze_data(df)
     
     save_markdown("README.md", analysis_story)
