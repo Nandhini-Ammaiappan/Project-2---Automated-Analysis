@@ -81,8 +81,8 @@ def save_markdown(file_path, content):
         f.write(content)
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "Add new"])
-    subprocess.run(["git", "remote", "add", "origin", remote_url])
-    subprocess.run(["git", "branch", "-M", "main"])
+    #subprocess.run(["git", "remote", "add", "origin", remote_url])
+    #subprocess.run(["git", "branch", "-M", "main"])
     subprocess.run(["git", "push", "-u", "origin", "main"])
 
 def main():
