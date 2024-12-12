@@ -72,8 +72,8 @@ def main():
     df = load_csv(csv_filename)
     print(sys.argv[1])
     analysis_story = analyze_data(df,csv_filename)
-    
-    save_markdown("README.md", analysis_story)
+    readme = /csv_filename/README.md
+    save_markdown(readme, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
