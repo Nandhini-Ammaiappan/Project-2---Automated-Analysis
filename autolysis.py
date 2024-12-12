@@ -6,7 +6,7 @@
 #   "requests",
 #   "load_dotenv",
 #   "tabulate",
-#   "github"
+#   "subprocess"
 # ]
 # ///
 
@@ -16,7 +16,9 @@ import sys
 import pandas as pd
 import base64
 from dotenv import load_dotenv
-from github import Github
+#from github import Github
+import subprocess
+
 
 load_dotenv()
 
@@ -66,34 +68,19 @@ def save_markdown(file_path, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     REPO_NAME = "Project-2---Automated-Analysis/{file_path}"
     NEW_FOLDER_PATH = "file_path"
+    # Initialize a Git repository if not already done
+    subprocess.run(["git", "init"])
 
-    # Connect to GitHub
-    g = Github(GITHUB_TOKEN)
-    
-    # Get the repository
-    repo = g.get_user().get_repo(REPO_NAME)
+    # Add and commit the README.md file
+    subprocess.run(["git", "add", "README.md"])
+    subprocess.run(["git", "commit", "-m", "Add README.md"])
 
-    repo.create_file("README.md", "Create README.md", content)
-    '''   url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
+    # Push to a remote repository (requires prior setup)
+    repository_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{NEW_FOLDER_PATH}"
+    subprocess.run(["git", "remote", "add", "origin", repository_url])
+    subprocess.run(["git", "branch", "-M", "main"])
+    subprocess.run(["git", "push", "-u", "origin", "main"])
 
-    headers = {
-        'Authorization': f'token {GITHUB_TOKEN}',
-        'Accept': 'application/vnd.github.v3+json'
-    }
-
-    data = {
-        'message': 'Create new folder',
-        'content': file_content_encoded
-    }
-
-    response = requests.put(url, headers=headers, json=data)
-
-    if response.status_code == 201:
-        print('Folder created successfully.')
-    else:
-        print('Failed to create folder:', response.json())
-
-    '''   
     #with open(file_path, 'w') as f:
     #   f.write(content)
 
