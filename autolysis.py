@@ -91,7 +91,7 @@ def main():
     else:
         print(f"{sys.argv[1]} is the file provided for analysis.")
 
-    csv_filename = sys.argv[1]
+    csv_filename = sys.argv[2]
     df = load_csv(csv_filename)
     sample_df = df.head().to_json(orient='records')
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
