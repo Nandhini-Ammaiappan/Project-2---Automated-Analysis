@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.environ["AIPROXY_TOKEN"] 
-''''''response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+'''response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
@@ -29,7 +29,7 @@ api_key = os.environ["AIPROXY_TOKEN"]
     )
 result = response.json()
 print(result)
-''''''
+'''
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
     df = pd.read_csv(file_path)
