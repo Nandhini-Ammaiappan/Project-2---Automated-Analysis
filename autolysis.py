@@ -60,29 +60,24 @@ def analyze_data(df,fn):
     return story
 
 def save_markdown(file_path, content):
-    """Save the analysis content to a Markdown file."""
-    GITHUB_TOKEN = os.environ["GITHUB"]
     REPO_OWNER = "Nandhini-Ammaiappan"
-    REPO_NAME = "Project-2---Automated-Analysis/{file_path}"
-    path = file_path.split('.')
-    # Initialize a Git repository if not already done
+    repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/.git/"
+    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
+
+    folder_name = file_path.split('.')
+
+    os.chdir(repo_path)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
-    #subprocess.run(["git", "config", "--global","user.email", REPO_OWNER])
-    subprocess.run(["git", "init"])
-
-    # Add and commit the README.md file
-    subprocess.run(["git", "add", path[0]])
-    #subprocess.run(["git", "add", "README.md"])
-    subprocess.run(["git", "commit", "-m", "Add"])
-
-    # Push to a remote repository (requires prior setup)
-    repository_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{NEW_FOLDER_PATH}"
-    subprocess.run(["git", "remote", "add", "origin", repository_url])
+    os.makedirs(folder_name[0])
+    placeholder_file = os.path.join(folder_name, ".gitkeep")
+    with open(placeholder_file, "w") as f:
+        f.write("")
+    print(f"Added .gitkeep file to '{folder_name}'.")
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "Add new"])
+    subprocess.run(["git", "remote", "add", "origin", remote_url])
     subprocess.run(["git", "branch", "-M", "main"])
     subprocess.run(["git", "push", "-u", "origin", "main"])
-
-    #with open(file_path, 'w') as f:
-    #   f.write(content)
 
 def main():
     if len(sys.argv) != 2:
