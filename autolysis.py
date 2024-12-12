@@ -69,10 +69,10 @@ def save_markdown(file_path, content):
     os.chdir(repo_path)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     os.makedirs(folder_name[0])
-    placeholder_file = os.path.join(folder_name, ".gitkeep")
-    with open(placeholder_file, "w") as f:
-        f.write("")
-    print(f"Added .gitkeep file to '{folder_name}'.")
+    #placeholder_file = os.path.join(folder_name, ".gitkeep")
+    #with open(placeholder_file, "w") as f:
+    #    f.write("")
+    #print(f"Added .gitkeep file to '{folder_name}'.")
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "Add new"])
     subprocess.run(["git", "remote", "add", "origin", remote_url])
