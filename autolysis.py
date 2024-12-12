@@ -74,6 +74,9 @@ def save_markdown(file_path, content):
     placeholder_file = os.path.join(repo_path, ".gitkeep")
     with open(placeholder_file, "w") as f:
         f.write("")
+    readme_file = os.path.join(repo_path, "README.md")
+    with open(readme_file, "w") as f:
+        f.write(content)
     print(f"Added .gitkeep file to '{folder_name[0]}'.")
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "Add new"])
