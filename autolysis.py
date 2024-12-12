@@ -74,7 +74,7 @@ def save_markdown(file_path, content):
     #with open(placeholder_file, "w") as f:
     #    f.write("")
     #print(f"Added .gitkeep file to '{folder_name}'.")
-    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "add", folder_name])
     subprocess.run(["git", "commit", "-m", "Add new"])
     subprocess.run(["git", "remote", "add", "origin", remote_url])
     subprocess.run(["git", "branch", "-M", "main"])
