@@ -93,7 +93,7 @@ def main():
 
     csv_filename = sys.argv[1]
     df = load_csv(csv_filename)
-    sample_df = df.head().to_json(orient='records').
+    sample_df = df.head().to_json(orient='records')
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
