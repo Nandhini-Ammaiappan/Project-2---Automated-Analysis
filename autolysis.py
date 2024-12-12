@@ -61,7 +61,7 @@ def analyze_data(df,fn):
 
 def save_markdown(file_path, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
-    repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/.git/"
+    repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
 
     folder_name = file_path.split('.')
@@ -70,10 +70,11 @@ def save_markdown(file_path, content):
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     if not os.path.exists(folder_name[0]):
         os.makedirs(folder_name[0])
-    placeholder_file = os.path.join(folder_name[0], ".gitkeep")
+    repo_path += folder_name[0]
+    placeholder_file = os.path.join(repo_path, ".gitkeep")
     with open(placeholder_file, "w") as f:
         f.write("")
-    print(f"Added .gitkeep file to '{folder_name}'.")
+    print(f"Added .gitkeep file to '{folder_name[0]}'.")
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", "Add new"])
     subprocess.run(["git", "remote", "add", "origin", remote_url])
