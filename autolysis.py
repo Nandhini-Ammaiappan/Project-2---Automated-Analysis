@@ -79,7 +79,7 @@ def save_markdown(file_path, content):
     readme_file = os.path.join(repo_path, "README.md")
     with open(readme_file, "w") as f:
         f.write(content)
-    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add new"])
     #subprocess.run(["git", "remote", "add", "origin", remote_url])
     #subprocess.run(["git", "branch", "-M", "main"])
