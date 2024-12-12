@@ -69,7 +69,7 @@ def save_markdown(file_path, content):
     file_content = content
     file_content_encoded = base64.b64encode(file_content.encode()).decode()
 
-    url = f'https://github.com/repos/{REPO_OWNER}/{REPO_NAME}/{file_content}/{NEW_FOLDER_PATH}/README.md'
+    url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{NEW_FOLDER_PATH}/README.md'
 
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
