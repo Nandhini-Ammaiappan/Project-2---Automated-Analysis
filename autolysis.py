@@ -64,14 +64,14 @@ def save_markdown(file_path, content):
     GITHUB_TOKEN = os.environ["GITHUB"]
     REPO_OWNER = "Nandhini-Ammaiappan"
     REPO_NAME = "Project-2---Automated-Analysis/{file_path}"
-    NEW_FOLDER_PATH = split(file_path,".")[0]
+    path = file_path.split('.')
     # Initialize a Git repository if not already done
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     #subprocess.run(["git", "config", "--global","user.email", REPO_OWNER])
     subprocess.run(["git", "init"])
 
     # Add and commit the README.md file
-    subprocess.run(["git", "add", file_path])
+    subprocess.run(["git", "add", path[0]])
     #subprocess.run(["git", "add", "README.md"])
     subprocess.run(["git", "commit", "-m", "Add"])
 
