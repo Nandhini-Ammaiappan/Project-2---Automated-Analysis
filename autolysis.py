@@ -5,7 +5,8 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate"
+#   "tabulate",
+#   "github"
 # ]
 # ///
 
