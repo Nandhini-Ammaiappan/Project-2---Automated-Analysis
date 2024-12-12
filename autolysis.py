@@ -37,7 +37,7 @@ def load_csv(file_path):
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(df):
+def analyze_data(df,fn):
     """Perform basic analysis on the DataFrame and create a story."""
     shape = df.shape
     columns = df.columns.tolist()
@@ -46,7 +46,7 @@ def analyze_data(df):
     
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
-    story += f"The dataset contains {shape[0]} rows and {shape[1]} columns.\n\n"
+    story += f"The dataset {fn} contains {shape[0]} rows and {shape[1]} columns.\n\n"
     story += f"### Columns:\n\n"
     for column in columns:
         story += f"- {column}\n"
@@ -71,7 +71,7 @@ def main():
     csv_filename = sys.argv[1]
     df = load_csv(csv_filename)
     print(sys.argv[1])
-    analysis_story = analyze_data(df)
+    analysis_story = analyze_data(df,csv_filename)
     
     save_markdown("README.md", analysis_story)
     print("Analysis complete. Check README.md for the results.")
