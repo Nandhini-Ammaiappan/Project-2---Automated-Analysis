@@ -66,6 +66,8 @@ def save_markdown(file_path, content):
     REPO_NAME = "Project-2---Automated-Analysis/{file_path}"
     NEW_FOLDER_PATH = "file_path"
     # Initialize a Git repository if not already done
+    subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
+    #subprocess.run(["git", "config", "--global","user.email", REPO_OWNER])
     subprocess.run(["git", "init"])
 
     # Add and commit the README.md file
