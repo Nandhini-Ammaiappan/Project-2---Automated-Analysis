@@ -106,7 +106,7 @@ def main():
     )
     result = response.json()
     analysis_story = analyze_data(df,csv_filename)
-    save_markdown(csv_filename, analysis_story)
+    #save_markdown(csv_filename, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
