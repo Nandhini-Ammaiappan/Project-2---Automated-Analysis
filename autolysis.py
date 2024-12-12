@@ -5,8 +5,7 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate",
-#   "base64"
+#   "tabulate"
 # ]
 # ///
 
