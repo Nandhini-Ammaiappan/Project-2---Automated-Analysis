@@ -132,7 +132,6 @@ def data_classification(df):
     #setting flags to false to idetify the high level classification
     geographical_data_present = timeseries_data_present = moneyseries_data_present = others_data_present = False
     
-    column_classify = []
     #tries to classify each column present in the input file
     for column_name in df.columns:
         part_names = column_name.split(' ')
