@@ -155,8 +155,8 @@ def validation():
         sys.exit(1)
         
     #validates if the csv file exists in the specified path 
-    if not os.path.isfile(file_path):
-        print(f"The file '{file_path}' does not exist.")
+    if not os.path.isfile(sys.argv[1]):
+        print(f"The file '{sys.argv[1]}' does not exist.")
         sys.exit(1)
 
 def main():
