@@ -125,7 +125,7 @@ def data_classification(df):
     #tries to classify each column present in the input file
     for column_name in df.columns:
         part_names = column_name.split(' ')
-        geographical_data_present,timeseries_data_present,moneyseries_data_present,others_data_present = False
+        geographical_data_present= timeseries_data_present= moneyseries_data_present= others_data_present = False
         for parts in part_names:
             if parts.lower() in geographical:
                 geographical_data_present = True
