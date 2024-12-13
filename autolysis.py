@@ -20,6 +20,9 @@ import subprocess
 
 load_dotenv()
 
+#global variables
+column_classify = []
+
 api_key = os.environ["AIPROXY_TOKEN"] 
 response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
@@ -196,5 +199,5 @@ def main():
 
 if __name__ == "__main__":
     # this is the beginning
-    column_classify = []
+
     main()
