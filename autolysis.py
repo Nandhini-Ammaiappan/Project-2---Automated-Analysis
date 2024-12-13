@@ -85,16 +85,17 @@ def save_markdown(file_path, content):
     subprocess.run(["git", "push", "-u", "origin", "main"])
 
 def validation():
-    
+
     # Validates if the the csv file is provided or not
     if len(sys.argv) != 2:
         print("Usage: uv run autolysis.py <csv_filename>")
         sys.exit(1)
         
     #validates if the csv file exists in the specified path 
-    if not os.path.isfile(file_path):
-        print(f"The file '{file_path}' does not exist.")
+    if not os.path.isfile(sys.argv[1]):
+        print(f"The file '{sys.argv[1]}' does not exist.")
         sys.exit(1)
+
 
 def request_llm (request_text):
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
@@ -162,18 +163,6 @@ def data_classification(df):
     #use LLM to classify the unclassified columns
     #request_llm('Classify each of the following ' + column_name_list + 'as geographical, time,money or others.')
     return (column_classification)
-
-def validation():
-
-    # Validates if the the csv file is provided or not
-    if len(sys.argv) != 2:
-        print("Usage: uv run autolysis.py <csv_filename>")
-        sys.exit(1)
-        
-    #validates if the csv file exists in the specified path 
-    if not os.path.isfile(sys.argv[1]):
-        print(f"The file '{sys.argv[1]}' does not exist.")
-        sys.exit(1)
 
 def main():
 
