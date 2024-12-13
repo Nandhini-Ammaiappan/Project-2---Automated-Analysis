@@ -71,46 +71,115 @@ def save_markdown(file_path, content):
     if not os.path.exists(folder_name[0]):
         os.makedirs(folder_name[0])
     repo_path += folder_name[0]
-    #placeholder_file = os.path.join(repo_path, ".gitkeep")
-    #with open(placeholder_file, "w") as f:
-    #    f.write("")
-    #subprocess.run(["git", "add", "."])
-    #subprocess.run(["git", "commit", "-m", "Add new"])
     readme_file = os.path.join(repo_path, "README.md")
     with open(readme_file, "w") as f:
         f.write(content)
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add new"])
-    #subprocess.run(["git", "remote", "add", "origin", remote_url])
-    #subprocess.run(["git", "branch", "-M", "main"])
     subprocess.run(["git", "push", "-u", "origin", "main"])
 
-def main():
+def validation():
+    
+    # Validates if the the csv file is provided or not
     if len(sys.argv) != 2:
         print("Usage: uv run autolysis.py <csv_filename>")
         sys.exit(1)
-    else:
-        print(f"{sys.argv[1]} is the file provided for analysis.")
+        
+    #validates if the csv file exists in the specified path 
+    if not os.path.isfile(file_path):
+        print(f"The file '{file_path}' does not exist.")
+        sys.exit(1)
 
-    csv_filename = sys.argv[1]
-    fname = re.split(r'/\[a-zA-Z0-9]*.csv',csv_filename)
-    print(fname)
-    df = load_csv(fname[0])
-    sample_df = df.head().to_json(orient='records')
+def request_llm (request_text):
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "Need you to analyse a csv file and provide its statistical information"},
+            {"role": "user", "content": request_text},
             ]
         }
     )
     result = response.json()
-    analysis_story = analyze_data(df,csv_filename)
+
+    print(result)
+    
+
+def data_classification(df):
+    
+    #grouping the columns based on the header names - this is only sample list
+    geographical = ['town','city','city/town','region','district','state','country','pincode','zipcode','latitute','longitude','lat','log']
+    timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
+    moneyseries = ['price','cost','profit','loss','expense','expenditure','debit','credit','p/l','gdp','capita','income']
+    others = ['name','ratings','overall','id','product','title']
+    geographical_columns = []
+    moneyseries_columns = []
+    timeseries_columns = []
+    others_columns = []
+    unclassified_columns =[]
+
+    data_type = df.dtypes
+    print(data_type)
+
+    #tries to classify each column present in the input file
+    for column_name in df.columns:
+        part_names = column_name.split(' ')
+        geographical_data_present,timeseries_data_present,moneyseries_data_present,others_data_present = False
+        for parts in part_names:
+            if parts.lower() in geographical:
+                geographical_data_present = True
+                geographical_columns += [column_name]
+            if parts.lower() in timeseries:
+                timeseries_data_present = True
+                timeseries_columns += [column_name]
+            if parts.lower() in moneyseries:
+                moneyseries_data_present = True
+                moneyseries_columns += [column_name]
+            if parts.lower() in others:
+                others_data_present = True
+                others_columns += [column_name] 
+        if not (geographical_data_present and timeseries_data_present and moneyseries_data_present and others_data_present):
+            unclassified_columns += [column_name] 
+        
+        column_name_list = ', '.join(unclassified_columns)
+    #use LLM to classify the unclassified columns
+    request_llm('Classify each of the following as geographical, time,money or others {column_name_ist}')
+
+
+def validation():
+
+    # Validates if the the csv file is provided or not
+    if len(sys.argv) != 2:
+        print("Usage: uv run autolysis.py <csv_filename>")
+        sys.exit(1)
+        
+    #validates if the csv file exists in the specified path 
+    if not os.path.isfile(file_path):
+        print(f"The file '{file_path}' does not exist.")
+        sys.exit(1)
+
+def main():
+    
+    #this function is to validate the input file
+    validation()        
+    
+    #extract only the filename from the argument 
+    file_name = re.split(r'/\[a-zA-Z0-9]*.csv',sys.argv[1])
+    
+    #load the contents of the input file into dataframe
+    df = load_csv(sys.argv[1])
+    
+    #function to classify the contents of the input file based on column names
+    data_classification(df)
+    
+    #extract only 1/10 records from the input as sample for analysis
+    sample_df = df.head(len(df)//10).to_json(orient='records')
+
+    analysis_story = analyze_data(sample_df,csv_filename)
     save_markdown(csv_filename, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
+    # this is the beginning
     main()
