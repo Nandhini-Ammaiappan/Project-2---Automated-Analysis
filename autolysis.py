@@ -144,7 +144,7 @@ def data_classification(df):
         
         column_name_list = ', '.join(unclassified_columns)
     #use LLM to classify the unclassified columns
-    request_llm('Classify each of the following as geographical, time,money or others {column_name_ist}')
+    request_llm('Classify each of the following as geographical, time,money or others ' + column_name_list)
 
 
 def validation():
