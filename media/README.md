@@ -2,7 +2,7 @@
 
 ## Dataset Information
 
-The dataset media.csv contains 2652 rows and 8 columns.
+The dataset ['media.csv'] contains 2652 rows and 8 columns.
 
 ### Columns:
 
@@ -14,7 +14,9 @@ The dataset media.csv contains 2652 rows and 8 columns.
 - overall
 - quality
 - repeatability
+## Dataset Classification
 
+The input file contains 2652 numerical columns and -2644 categorical columns. Based on the column names at very high level identified that file might contain: 
 ## Summary Statistics
 
 |       |    overall |     quality |   repeatability |
