@@ -47,7 +47,7 @@ def analyze_data(df,file_name):
     columns = df.columns.tolist()
     description = df.describe()
     null_values = df.isnull().sum()
-    numerical_columns = len(df.select_dtpes(include="float"))
+    numerical_columns = len(df.select_dtypes(include="float"))
     
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
