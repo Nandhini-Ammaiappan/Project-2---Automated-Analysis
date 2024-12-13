@@ -94,7 +94,7 @@ def validation():
     #validates if the csv file exists in the specified path 
     if not os.path.isfile(sys.argv[1]):
         print(f"The file '{sys.argv[1]}' does not exist.")
-        sys.exit(1)
+        sys.exit(0)
 
 
 def request_llm (request_text):
