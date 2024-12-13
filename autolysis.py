@@ -139,7 +139,7 @@ def data_classification(df):
             if parts.lower() in others:
                 others_data_present = True
                 others_columns += [column_name] 
-        if not (geographical_data_present and timeseries_data_present and moneyseries_data_present and others_data_present):
+        if not (geographical_data_present or timeseries_data_present or moneyseries_data_present or others_data_present):
             unclassified_columns += [column_name] 
         
         column_name_list = ', '.join(unclassified_columns)
