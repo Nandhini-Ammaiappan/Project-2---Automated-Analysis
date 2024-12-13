@@ -194,8 +194,8 @@ def main():
     #extract only 1/10 records from the input as sample for analysis
     sample_df = df.head(len(df)//10).to_json(orient='records')
 
-    analysis_story = analyze_data(sample_df,filename)
-    save_markdown(filename, analysis_story)
+    analysis_story = analyze_data(sample_df,file_name)
+    save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
