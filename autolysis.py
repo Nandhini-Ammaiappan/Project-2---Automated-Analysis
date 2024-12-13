@@ -38,19 +38,24 @@ def load_csv(file_path):
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(df,fn):
+def analyze_data(df,file_name):
     """Perform basic analysis on the DataFrame and create a story."""
     shape = df.shape
     columns = df.columns.tolist()
     description = df.describe()
     null_values = df.isnull().sum()
+    numerical_columns = len(df.select_dtpes(include="float"))
     
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
-    story += f"The dataset {fn} contains {shape[0]} rows and {shape[1]} columns.\n\n"
+    story += f"The dataset {file_name} contains {shape[0]} rows and {shape[1]} columns.\n\n"
     story += f"### Columns:\n\n"
     for column in columns:
         story += f"- {column}\n"
+    story += f"## Dataset Classification\n\n"
+    story += f"The input file contains {numerical_columns} numerical columns and {shape[1]-numerical_columns} categorical columns. "
+    story += f"Based on the column names at very high level identified that file might contain: "         
+    story += f"\n".join([f"* {item}" for item in column_classify])
     story += f"\n## Summary Statistics\n\n"
     story += f"{description.to_markdown()}\n\n"
     story += f"## Missing Values\n\n"
@@ -113,19 +118,20 @@ def data_classification(df):
     timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
     moneyseries = ['price','cost','profit','loss','expense','expenditure','debit','credit','p/l','gdp','capita','income']
     others = ['name','ratings','overall','id','product','title']
+
+    #list defined to hold the columns name respectively
     geographical_columns = []
     moneyseries_columns = []
     timeseries_columns = []
     others_columns = []
     unclassified_columns =[]
 
-    data_type = df.dtypes
-    print(data_type)
-
+    #setting flags to false to idetify the high level classification
+    geographical_data_present = timeseries_data_present = moneyseries_data_present = others_data_present = False
+    
     #tries to classify each column present in the input file
     for column_name in df.columns:
         part_names = column_name.split(' ')
-        geographical_data_present= timeseries_data_present= moneyseries_data_present= others_data_present = False
         for parts in part_names:
             if parts.lower() in geographical:
                 geographical_data_present = True
@@ -139,12 +145,20 @@ def data_classification(df):
             if parts.lower() in others:
                 others_data_present = True
                 others_columns += [column_name] 
+        if geographical_data_present:
+            column_classify += ['Geographical']
+        if moneyseries_data_present:
+            column_classify += ['Financial']
+        if timeseries_data_present:
+            column_classify += ['Time series'] 
+            
         if not (geographical_data_present or timeseries_data_present or moneyseries_data_present or others_data_present):
             unclassified_columns += [column_name] 
         
         column_name_list = ', '.join(unclassified_columns)
+    
     #use LLM to classify the unclassified columns
-    request_llm('Classify each of the following as geographical, time,money or others ' + column_name_list)
+    request_llm('Classify each of the following ' + column_name_list + 'as geographical, time,money or others.')
 
 
 def validation():
@@ -160,7 +174,7 @@ def validation():
         sys.exit(1)
 
 def main():
-    
+
     #this function is to validate the input file
     validation()        
     
@@ -176,10 +190,11 @@ def main():
     #extract only 1/10 records from the input as sample for analysis
     sample_df = df.head(len(df)//10).to_json(orient='records')
 
-    analysis_story = analyze_data(sample_df,csv_filename)
-    save_markdown(csv_filename, analysis_story)
+    analysis_story = analyze_data(sample_df,filename)
+    save_markdown(filename, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
     # this is the beginning
+    column_classify = []
     main()
