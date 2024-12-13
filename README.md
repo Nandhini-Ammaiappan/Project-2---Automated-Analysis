@@ -2,7 +2,7 @@
 
 ## Dataset Information
 
-The dataset goodreads.csv contains 10000 rows and 23 columns.
+The dataset /home/nandhini/.local/share/tds-sep-24-project-2/datasets/goodreads.csv contains 10000 rows and 23 columns.
 
 ### Columns:
 
