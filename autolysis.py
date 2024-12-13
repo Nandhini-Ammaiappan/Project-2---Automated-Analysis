@@ -20,9 +20,6 @@ import subprocess
 
 load_dotenv()
 
-#global variables
-column_classify = []
-
 api_key = os.environ["AIPROXY_TOKEN"] 
 response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
@@ -41,13 +38,13 @@ def load_csv(file_path):
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(df,file_name):
+def analyze_data(df,file_name,classified_list):
     """Perform basic analysis on the DataFrame and create a story."""
     shape = df.shape
     columns = df.columns.tolist()
     description = df.describe()
     null_values = df.isnull().sum()
-    numerical_columns = len(df.select_dtypes(include="float"))
+    numerical_columns = len(df.select_dtypes(include="float").columns)
     
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
@@ -57,8 +54,9 @@ def analyze_data(df,file_name):
         story += f"- {column}\n"
     story += f"## Dataset Classification\n\n"
     story += f"The input file contains {numerical_columns} numerical columns and {shape[1]-numerical_columns} categorical columns. "
-    story += f"Based on the column names at very high level identified that file might contain: "         
-    story += f"\n".join([f"* {item}" for item in column_classify])
+    if len(classified_list) > 0:
+        story += f"Based on the column names at very high level identified that file might contain: "         
+        story += f"\n".join([f"* {item}" for item in classified_list])
     story += f"\n## Summary Statistics\n\n"
     story += f"{description.to_markdown()}\n\n"
     story += f"## Missing Values\n\n"
@@ -128,6 +126,7 @@ def data_classification(df):
     timeseries_columns = []
     others_columns = []
     unclassified_columns =[]
+    column_classification = []
 
     #setting flags to false to idetify the high level classification
     geographical_data_present = timeseries_data_present = moneyseries_data_present = others_data_present = False
@@ -149,11 +148,11 @@ def data_classification(df):
                 others_data_present = True
                 others_columns += [column_name] 
         if geographical_data_present:
-            column_classify += ['Geographical']
+            column_classification += ['Geographical']
         if moneyseries_data_present:
-            column_classify += ['Financial']
+            column_classification += ['Financial']
         if timeseries_data_present:
-            column_classify += ['Time series'] 
+            column_classification += ['Time series'] 
             
         if not (geographical_data_present or timeseries_data_present or moneyseries_data_present or others_data_present):
             unclassified_columns += [column_name] 
@@ -162,6 +161,7 @@ def data_classification(df):
     
     #use LLM to classify the unclassified columns
     #request_llm('Classify each of the following ' + column_name_list + 'as geographical, time,money or others.')
+    return (column_classification)
 
 def validation():
 
@@ -187,12 +187,12 @@ def main():
     df = load_csv(sys.argv[1])
     
     #function to classify the contents of the input file based on column names
-    data_classification(df)
+    classified_list = data_classification(df)
     
     #extract only 1/10 records from the input as sample for analysis
     sample_df = df.head(len(df)//10).to_json(orient='records')
     
-    analysis_story = analyze_data(df,file_name[0])
+    analysis_story = analyze_data(df,file_name[0],classified_list)
     save_markdown(file_name[0], analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
