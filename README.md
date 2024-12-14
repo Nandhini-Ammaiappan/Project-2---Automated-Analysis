@@ -2,7 +2,7 @@
 
 ## Dataset Information
 
-The dataset /mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/goodreads.csv contains 10000 rows and 23 columns.
+The dataset goodreads.csv contains 10000 rows and 23 columns.
 
 ### Columns:
 
