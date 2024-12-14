@@ -27,7 +27,6 @@ moneyseries_columns = []
 timeseries_columns = []
 others_columns = []
 unclassified_columns = []
-column_classification = []
 numerical_columns = []
 categorical_columns = []
 
@@ -153,13 +152,13 @@ def request_llm (request_text):
 
 def data_classification():
     
-    global df, unclassified_columns
+    global df, unclassified_columns,geographical_columns,others_columns,timeseries_columns,moneyseries
     #grouping the columns based on the header names - this is only sample list
     geographical = ['town','city','city/town','region','district','state','country','pincode','zipcode','latitute','longitude','lat','log']
     timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
     moneyseries = ['price','cost','profit','loss','expense','expenditure','debit','credit','p/l','gdp','capita','income']
     others = ['name','ratings','overall','id','product','title']
- 
+    column_classification = []
     #setting flags to false to idetify the high level classification
     geographical_data_present = timeseries_data_present = moneyseries_data_present = others_data_present = False
     
