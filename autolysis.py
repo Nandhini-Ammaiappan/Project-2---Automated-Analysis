@@ -67,7 +67,7 @@ def analyze_data(df,file_name,classified_list):
 
 def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
-    repo_path = ""
+    repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     file_name_only,extension = file_name.split('.')
     
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only}.git"
@@ -81,13 +81,14 @@ def save_markdown(file_name, content):
     with open("README.md", "w") as file:
         file.write(content)
     
-    repo_path = folder_path + "/"
+    folder_path_path += "/"
     
-    readme_file = os.path.join(repo_path, "README.md")
+    readme_file = os.path.join(folder_path, "README.md")
     with open(readme_file, "w") as f:
         f.write(content)
     
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
+    subprocess.run(["git", "add", file_name_only])
     subprocess.run(["git", "add", readme_file]) 
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git","remote","add","origin",remote_url])
