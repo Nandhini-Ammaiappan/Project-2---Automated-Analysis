@@ -351,7 +351,7 @@ def main():
     #plot_suggestion = request_llm(sample_data,"Suggest what plots can be created using this report and provide its axis details")
     analysis_story = analyze_data(file_name,classified_list,initial_analysis,statistical_analysis)
     '''
-    analysis_story = "Temp data"
+    analysis_story = "Temp data1"
     save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
