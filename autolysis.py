@@ -71,7 +71,7 @@ def save_markdown(file_path, content):
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
     repo_path = ""
 
-    folder_name = file_path[0].split('.')
+    folder_name = file_path.split('.')
     print(file_path,folder_name)
     with open("README.md", "w") as file:
         file.write(content)
@@ -178,7 +178,7 @@ def main():
     
     #extract only the filename from the argument 
     file_name = re.split(r'/\[a-zA-Z0-9]*.csv',sys.argv[1])
-    
+    print('file_name 0',file_name)
     #load the contents of the input file into dataframe
     df = load_csv(sys.argv[1])
     
