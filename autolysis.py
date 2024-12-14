@@ -177,7 +177,7 @@ def main():
     validation()        
     
     #extract only the filename from the argument 
-    file_name = os.path.basename()
+    file_name = os.path.basename(sys.argv[1])
     print('file_name 0',file_name)
     #load the contents of the input file into dataframe
     df = load_csv(sys.argv[1])
