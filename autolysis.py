@@ -81,7 +81,8 @@ def save_markdown(file_name, content):
 
     with open("README.md", "w") as file:
         file.write(content)
-       
+    
+    readme_file = os.path.join(folder_path, "README.md")
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     subprocess.run(["git", "add", file_name_only])
     subprocess.run(["git", "add", readme_file]) 
