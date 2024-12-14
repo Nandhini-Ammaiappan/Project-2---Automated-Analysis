@@ -70,7 +70,7 @@ def save_markdown(file_path, content):
     #repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
     repo_path = ""
-    
+
     folder_name = file_path[0].split('.')
     print(file_path,folder_name)
     with open("README.md", "w") as file:
@@ -79,9 +79,9 @@ def save_markdown(file_path, content):
     os.chdir(repo_path)
     if not os.path.exists(folder_name[0]):
         os.makedirs(folder_name[0])
-    print(folder_name)
+    print('folder_name',folder_name)
     repo_path += folder_name[0] + "/"
-    print(repo_path)
+    print('repo_path',repo_path)
     readme_file = os.path.join(repo_path, "README.md")
     with open(readme_file, "w") as f:
         f.write(content)
