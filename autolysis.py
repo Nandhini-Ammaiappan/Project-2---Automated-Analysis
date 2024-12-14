@@ -73,7 +73,7 @@ def save_markdown(file_name, content):
     
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only}.git"
     
-    folder_path = os.getcwd() + '/' + file_name 
+    folder_path = os.getcwd() 
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
