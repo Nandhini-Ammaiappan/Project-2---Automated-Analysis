@@ -69,7 +69,7 @@ def load_csv(file_path):
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(file_name,classified_list):
+def analyze_data(file_name,classified_list,initial_analyis):
     """Perform basic analysis on the DataFrame and create a story."""
     global df
     shape = df.shape
@@ -80,6 +80,7 @@ def analyze_data(file_name,classified_list):
     
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
+    story += f"{initial_analyis}"
     story += f"The dataset {file_name} contains {shape[0]} rows and {shape[1]} columns.\n\n"
     story += f"### Columns:\n\n"
     for column in columns:
@@ -139,21 +140,21 @@ def validation():
         sys.exit(0)
 
 
-def request_llm (request_text):
+def request_llm (data,request_text):
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
-    headers={"Authorization": f"Bearer {api_key}"},
+    headers={"Authorization": f"Bearer {api_key}","Content-Type":"application/json"},
     json={
         "model": "gpt-4o-mini",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": request_text},
+            {"role": "user", "content": f"{request_text}\n{data}"}
             ]
         }
     )
-    result = response.json()
-
-    print(result)
-    
+    if response.status_code == 200:
+        return(response.json()['choices'][0]['message']['content'])
+    else:
+        return(f"Unable to get response from LLM - {response.status_cose}")
 
 def data_classification():
     
@@ -217,9 +218,11 @@ def main():
     classified_list = data_classification()
     
     #extract only 1/10 records from the input as sample for analysis
-    sample_df = df.head(len(df)//10).to_json(orient='records')
-    
-    analysis_story = analyze_data(file_name,classified_list)
+    sample_data = df.head(len(df)//10).to_json(orient='records')
+    initial_analysis = request_llm(sample_data,"Suggest what this report contains")
+    print(initial_analysis)
+
+    analysis_story = analyze_data(file_name,classified_list,initial_analysis)
     save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
