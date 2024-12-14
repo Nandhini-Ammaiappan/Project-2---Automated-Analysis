@@ -20,7 +20,6 @@ import subprocess
 import matplotlib.pyplot as plt
 
 
-
 #global list defined to hold the columns name respectively
 global df
 geographical_columns = []
@@ -46,6 +45,97 @@ response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/comp
     )
 result = response.json()
 
+function_descriptions_multiple = [
+    {
+        "name": "get_plot_information",
+        "description": "To get details on the plot/graph that can be drawn from the data provided",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "Plot Type": {
+                    "type": "string",
+                    "description": "The name of the plot, e.g. Bar, Line",
+                },
+                "X-axis": {
+                    "type": "string",
+                    "description": "The name of the column that can used as x axis e.g. language",
+                },
+                "Y-axis": {
+                    "type": "string",
+                    "description": "The name of the column that can used as y axis e.g. rating",
+                },
+            },
+            "required": ["Plot Type", "X-axis", "Y-axis"],
+        },
+    },
+    {
+        "name": "draw_the_plot",
+        "description": "To draw the plot/graph using the data received",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "Plot Type": {
+                    "type": "string",
+                    "description": "The name of the plot, e.g. Bar, Line",
+                },
+                "X-axis": {
+                    "type": "string",
+                    "description": "The name of the column that can used as x axis e.g. language",
+                },
+                "Y-axis": {
+                    "type": "string",
+                    "description": "The name of the column that can used as y axis e.g. rating",
+                },
+            },
+            "required": ["Plot Type", "X-axis", "Y-axis"],
+        },
+    },
+]
+
+def get_brief_description(sample_data):
+    # Example output returned from an API or database
+    text_message = {
+        "message": sample_data
+    }
+    return json.dumps(plot_info)
+
+def get_plot_information():
+    # Example output returned from an API or database
+    plot_info = {
+        "Plot Type": plot_name,
+        "X-axis": column_name_x,
+        "Y-axis": column_name_y,
+    }
+    print(json.dumps(plot_info))
+    return json.dumps(plot_info)
+
+def draw_the_plot():
+    # Example output returned from an API or database
+    plot_data = {
+        "Plot Type": plot_name,
+        "X-axis": column_name_x,
+        "Y-axis": column_name_y,
+    }
+    return json.dumps(plot_data)
+
+def ask_and_reply(prompt,sample_data):
+    """Give LLM a given prompt and get an answer."""
+    response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+    headers={"Authorization": f"Bearer {api_key}"},
+    json={
+        "model": "gpt-4o-mini",
+        "messages": [
+            {"role": "user", "content": prompt+"\n"+sample_data},
+            ],
+        "functions": function_descriptions_multiple,
+        "function_call": "auto",
+        }
+    )
+  
+    output = response.json()
+    print(output)
+    return output
+
 def plot_graph():
     #to plot grap based on the columns
 
@@ -69,7 +159,7 @@ def load_csv(file_path):
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(file_name,classified_list,initial_analyis):
+def analyze_data(file_name,classified_list,initial_analyis,statistical_analysis):
     """Perform basic analysis on the DataFrame and create a story."""
     global df
     shape = df.shape
@@ -81,20 +171,23 @@ def analyze_data(file_name,classified_list,initial_analyis):
     story = f"# Data Analysis Report\n\n"
     story += f"## Dataset Information\n\n"
     story += f"{initial_analyis}"
-    story += f"The dataset {file_name} contains {shape[0]} rows and {shape[1]} columns.\n\n"
-    story += f"### Columns:\n\n"
-    for column in columns:
-        story += f"- {column}\n"
-    story += f"## Dataset Classification\n\n"
+    story += f"\nThe dataset {file_name} contains {shape[0]} rows and {shape[1]} columns.\n\n"
+    story += f"### Statistical Details:\n\n"
+    story += f'{statistical_analysis}'
+    story += f"\n\n## Dataset Classification\n\n"
     story += f"The input file contains {numerical_columns} numerical columns and {shape[1]-numerical_columns} categorical columns. "
-    if len(classified_list) > 0:
+    '''if len(classified_list) > 0:
         story += f"Based on the column names at very high level identified that file might contain: "         
         story += f"\n".join([f"* {item}" for item in classified_list])
+    '''
+    story += f"### Plot Information:\n\n"
+    #story += f'{plot_suggestion}'
     story += f"\n## Summary Statistics\n\n"
     story += f"{description.to_markdown()}\n\n"
     story += f"## Missing Values\n\n"
     for column, num_missing in null_values.items():
-        story += f"- {column}: {num_missing} missing values\n"
+        if num_missing > 0:
+            story += f"- {column}: {num_missing} missing values\n"
     
     return story
 
@@ -151,11 +244,13 @@ def request_llm (data,request_text):
             ]
         }
     )
+
     if response.status_code == 200:
         return(response.json()['choices'][0]['message']['content'])
     else:
         return(f"Unable to get response from LLM - {response.status_code}")
-
+    
+    
 def data_classification():
     
     global df, unclassified_columns, geographical_columns,others_columns,timeseries_columns, moneyseries_columns
@@ -219,10 +314,26 @@ def main():
     
     #extract only 1/10 records from the input as sample for analysis
     sample_data = df.head(len(df)//10).to_json(orient='records')
-    initial_analysis = request_llm(sample_data,"Suggest what this report contains")
-    print(initial_analysis)
+    
+    #scenario 1
+    '''user_prompt = "Suggest what this report contains"
+    initial_analysis = ask_and_reply(user_prompt,sample_data)
+    
+    #scenario 2
+    user_prompt = "Provide statistical details based on the data provided"
+    statistical_analysis = ask_and_reply(user_prompt,sample_data)
+'''
+    #scenario 3
+    user_prompt = "Suggest what plots can be created using this report and provide its axis details"
+    plot_suggestion = ask_and_reply(user_prompt,sample_data)
+    print(plot_suggestion)
 
-    analysis_story = analyze_data(file_name,classified_list,initial_analysis)
+
+    initial_analysis = request_llm(sample_data,"Suggest what this report contains")
+    statistical_analysis = request_llm(sample_data,"Provide statistical details based on the data provided")
+    #plot_suggestion = request_llm(sample_data,"Suggest what plots can be created using this report and provide its axis details")
+    analysis_story = analyze_data(file_name,classified_list,initial_analysis,statistical_analysis)
+    
     save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
