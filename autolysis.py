@@ -189,6 +189,7 @@ def main():
     sample_df = df.head(len(df)//10).to_json(orient='records')
     
     analysis_story = analyze_data(df,file_name[0],classified_list)
+    print('file_name1',file_name[0])
     save_markdown(file_name[0], analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
