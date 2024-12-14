@@ -6,7 +6,8 @@
 #   "requests",
 #   "load_dotenv",
 #   "tabulate",
-#   "matplotlib"
+#   "matplotlib",
+#   "gitpython"
 #  ]
 # ///
 
@@ -16,8 +17,10 @@ import sys
 import re
 import pandas as pd
 from dotenv import load_dotenv
+from git import repo
 import subprocess
 import matplotlib.pyplot as plt
+
 
 
 #global list defined to hold the columns name respectively
@@ -102,7 +105,7 @@ def save_markdown(file_name, content):
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     file_name_only,extension = file_name.split('.')
     
-    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only}.git"
+    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/.git"
     
     folder_path = os.getcwd() 
 
@@ -113,10 +116,13 @@ def save_markdown(file_name, content):
     with open("README.md", "w") as file:
         file.write(content)
     
-    readme_file = os.path.join(folder_path, "README.md")
+    repo_folder_path = os.path.join(repo_path, file_name_only)
+    os.makedirs(repo_folder_path, exist_ok=True)
+    readme_file = os.path.join(repo_folder_path, "README.md")
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
-    subprocess.run(["git", "add", file_name_only])
-    subprocess.run(["git", "add", readme_file]) 
+    subprocess.run(["git", "add", repo_folder_path]) 
+    subprocess.run(["git", "commit", "-m", "Create folder"])
+    subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git","remote","add","origin",remote_url])
     subprocess.run(["git", "push", "-u", "origin", "main"])
