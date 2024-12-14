@@ -75,8 +75,8 @@ def save_markdown(file_name, content):
     print('folder 0',folder_path)
     
     if not os.path.exists(folder_path):
-        os.makedirs(file_name)
-    os.chdir(file_name)
+        os.makedirs(folder_path)
+    os.chdir(folder_path)
 
     with open("README.md", "w") as file:
         file.write(content)
