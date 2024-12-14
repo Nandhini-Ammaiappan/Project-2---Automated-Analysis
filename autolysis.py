@@ -46,7 +46,7 @@ response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/comp
     )
 result = response.json()
 
-def plot_graph:
+def plot_graph():
 #to plot grap based on the columns
 
 for y in numerical_columns:
