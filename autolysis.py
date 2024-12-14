@@ -71,7 +71,7 @@ def save_markdown(file_name, content):
     file_name_only,extension = file_name.split('.')
     
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only}.git"
-    print(remote_url)
+    
     folder_path = os.getcwd() + '/' + file_name 
 
     if not os.path.exists(folder_path):
@@ -180,7 +180,7 @@ def main():
     
     #extract only the filename from the argument 
     file_name = os.path.basename(sys.argv[1])
-    print('file_name 0',file_name)
+    
     #load the contents of the input file into dataframe
     df = load_csv(sys.argv[1])
     
