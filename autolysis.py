@@ -124,11 +124,7 @@ def save_markdown(file_name, content):
     #subprocess.run(["git", "commit", "-m", "Create folder"])
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
-    check_remote = subprocess.run(["git","remote","-v",repo_folder_path])
-    if check_remote == 0:
-        subprocess.run(["git", "push", "-u", "origin", "main"])
-    else:
-        subprocess.run(["git","remote","add","origin",remote_url])
+    subprocess.run(["git", "push", "-u", "origin", "main"])
     
 def validation():
 
