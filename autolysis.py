@@ -198,7 +198,7 @@ def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
-    
+
     #retrieves only the filename to create the folder in git
     file_name_only,extension = file_name.split('.')
     
@@ -228,8 +228,8 @@ def save_markdown(file_name, content):
 
     #subprocess executed to push the README from github to git repository and commit the same
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
-    subprocess.run(["git", "add", repo_folder_path]) 
-    subprocess.run(["git", "commit", "-m", "Create folder"])
+    #subprocess.run(["git", "add", repo_folder_path]) 
+    #subprocess.run(["git", "commit", "-m", "Create folder"])
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git","remote","add","origin",remote_url])
