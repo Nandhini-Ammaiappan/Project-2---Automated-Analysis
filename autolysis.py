@@ -49,18 +49,19 @@ result = response.json()
 def plot_graph():
 #to plot grap based on the columns
 
+# Create a bar chart
 for y in numerical_columns:
-    # Create a bar chart
-    plt.bar(categorical_columns, , marker='o')
+    for x in categorical_columns:
+        plt.bar(x,y, color="skyblue")
 
-    # Add title and labels
-    plt.title('Sample BarLine Chart')
-    plt.xlabel(x)
-    plt.ylabel(y)
+        # Add title and labels
+        plt.title('Sample BarChart')
+        plt.xlabel(x)
+        plt.ylabel(y)
 
-    plt.savefig('bar_chart.png')
-    # Display the chart
-    plt.show()
+        plt.savefig('{x}.png')
+        # Display the chart
+        plt.show()
 
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
