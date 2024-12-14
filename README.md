@@ -2,131 +2,35 @@
 
 ## Dataset Information
 
-The report you provided appears to be a comprehensive set of movie and series reviews compiled for a variety of films and television programs. Here are the key elements that the report contains:
-
-1. **Date of Review**: Each entry lists the date when the review was made, allowing for chronological tracking of releases.
-
-2. **Language**: The language in which the movie or series was produced (e.g., Tamil, Telugu, English, Hindi, Malayalam, Japanese, Spanish).
-
-3. **Type**: The type of content reviewed, which primarily includes movies but also mentions series.
-
-4. **Title**: The name of the movie or series being reviewed.
-
-5. **Contributors**: The names of the primary actors or creators involved in the film or series, indicating notable performances or contributions.
-
-6. **Overall Rating**: A numerical rating out of 5 that summarizes the reviewer's overall impression of the movie or series, with a rating of 1 being the lowest and 5 being the highest.
-
-7. **Quality Rating**: A separate quality rating, also on a scale from 1 to 5, which evaluates the production quality, cinematography, writing, and overall execution.
-
-8. **Repeatability**: This likely indicates whether the reviewer would watch the movie or series again, with ratings that suggest how memorable or enjoyable they found the content.
-
-### Insights Derived from the Report:
-- **Diversity of Content**: The report covers a wide range of genres, languages, and styles, highlighting popular titles and lesser-known films alike.
-- **Performance Metrics**: It includes detailed metrics (overall rating, quality rating, repeatability), which could be useful for aggregating favorites or making recommendations.
-- **Trends Over Time**: Reviewing the dates could show trends in viewer preferences or shifts in the quality of various film industries.
-- **Collaboration**: The inclusion of notable cast members indicates collaborations that might affect public interest and marketing.
-
-### Potential Uses:
-- **Recommendations**: The ratings and quality metrics can aid users in selecting what to watch based on personal preferences.
-- **Trend Analysis**: Researchers or analysts may use this data to discern trends in entertainment preferences across different languages and regions.
-- **Market Insight**: Companies may leverage this information for understanding audience reception and planning future productions.
-
-Overall, this report presents a rich database-like collection of reviews that could serve multiple purposes in entertainment analysis, consumer recommendations, and market research.
-The dataset media.csv contains 2652 rows and 8 columns.
+Unable to get response from LLM - 429
+The dataset goodreads.csv contains 10000 rows and 23 columns.
 
 ### Statistical Details:
 
-Based on the data provided, here are some statistical insights and details regarding the movies and series listed:
-
-### Summary of Data
-- **Total Entries**: 395
-- **Languages Represented**: Tamil, Telugu, English, Hindi, Japanese, Spanish, Chinese, Malayalam
-- **Types**: Primarily movies, along with some series.
-
-### Ratings Overview
-- **Rating Scale**: Overall rating and quality rating are both on a scale of 1 to 5.
-
-### Overall Ratings
-- **Minimum Overall Rating**: 1
-- **Maximum Overall Rating**: 5
-- **Average Overall Rating**: 
-  - Total sum of ratings: 1089
-  - Average = Total Sum / Number of Entries = 1089 / 395 ≈ 2.76
-
-### Quality Ratings
-- **Minimum Quality Rating**: 2
-- **Maximum Quality Rating**: 5
-- **Average Quality Rating**: 
-  - Total sum of quality ratings: 1089
-  - Average = Total Sum / Number of Entries = 1089 / 395 ≈ 2.76
-
-### Repeatability
-- **Minimum Repeatability Rate**: 1
-- **Maximum Repeatability Rate**: 3
-- **Average Repeatability**:
-  - Total sum of repeatability: 253
-  - Average = Total Sum / Number of Entries = 253 / 395 ≈ 0.64
-
-### Language Breakdown
-- **Tamil**: 172 entries
-- **Telugu**: 109 entries
-- **English**: 82 entries
-- **Hindi**: 24 entries
-- **Japanese**: 15 entries
-- **Spanish**: 1 entry
-- **Chinese**: 2 entries
-- **Malayalam**: 2 entries
-
-### Unique Authors
-- The data includes multiple directors and actors, with well-known personalities appearing frequently, such as:
-  - Rajnikanth
-  - Kamal Hassan
-  - Vijay Devarakonda
-  - Dhanush
-  - Ajith
-
-### Date of Releases
-- The dates of the movie releases range from **15-Nov-24** to **01-Apr-22**.
-- Most recent entries are from **November 2024**, while the oldest are from **April 2022**.
-
-### Distribution of Ratings
-- **Overall Rating Frequencies**:
-  - 1: 20 entries
-  - 2: 67 entries
-  - 3: 158 entries
-  - 4: 95 entries
-  - 5: 55 entries
-
-- **Quality Rating Frequencies**:
-  - 2: 27 entries
-  - 3: 214 entries
-  - 4: 117 entries
-  - 5: 37 entries
-
-### Conclusion
-From the data, it appears that the majority of entries tend to lean towards an overall rating of 3, with a substantial number achieving quality ratings of 3 and above. Tamil films seem to dominate the dataset in terms of volume, while English and Telugu films also have a significant representation. The repeatability rate indicates that many viewers might not feel compelled to re-watch many of the entries listed. 
-
-This dataset serves as a comprehensive compilation of recent films and series across various languages and can provide insights into viewer preferences and trends in cinema.
+Unable to get response from LLM - 429
 
 ## Dataset Classification
 
-The input file contains 0 numerical columns and 8 categorical columns. ### Plot Information:
+The input file contains 3 numerical columns and 20 categorical columns. ### Plot Information:
 
 
 ## Summary Statistics
 
-|       |    overall |     quality |   repeatability |
-|:------|-----------:|------------:|----------------:|
-| count | 2652       | 2652        |     2652        |
-| mean  |    3.04751 |    3.20928  |        1.49472  |
-| std   |    0.76218 |    0.796743 |        0.598289 |
-| min   |    1       |    1        |        1        |
-| 25%   |    3       |    3        |        1        |
-| 50%   |    3       |    3        |        1        |
-| 75%   |    3       |    4        |        2        |
-| max   |    5       |    5        |        3        |
+|       |   book_id |   goodreads_book_id |     best_book_id |         work_id |   books_count |         isbn13 |   original_publication_year |   average_rating |    ratings_count |   work_ratings_count |   work_text_reviews_count |   ratings_1 |   ratings_2 |   ratings_3 |      ratings_4 |       ratings_5 |
+|:------|----------:|--------------------:|-----------------:|----------------:|--------------:|---------------:|----------------------------:|-----------------:|-----------------:|---------------------:|--------------------------:|------------:|------------:|------------:|---------------:|----------------:|
+| count |  10000    |     10000           |  10000           | 10000           |    10000      | 9415           |                    9979     |     10000        |  10000           |      10000           |                  10000    |    10000    |    10000    |     10000   | 10000          | 10000           |
+| mean  |   5000.5  |         5.2647e+06  |      5.47121e+06 |     8.64618e+06 |       75.7127 |    9.75504e+12 |                    1981.99  |         4.00219  |  54001.2         |      59687.3         |                   2919.96 |     1345.04 |     3110.89 |     11475.9 | 19965.7        | 23789.8         |
+| std   |   2886.9  |         7.57546e+06 |      7.82733e+06 |     1.17511e+07 |      170.471  |    4.42862e+11 |                     152.577 |         0.254427 | 157370           |     167804           |                   6124.38 |     6635.63 |     9717.12 |     28546.4 | 51447.4        | 79768.9         |
+| min   |      1    |         1           |      1           |    87           |        1      |    1.9517e+08  |                   -1750     |         2.47     |   2716           |       5510           |                      3    |       11    |       30    |       323   |   750          |   754           |
+| 25%   |   2500.75 |     46275.8         |  47911.8         |     1.00884e+06 |       23      |    9.78032e+12 |                    1990     |         3.85     |  13568.8         |      15438.8         |                    694    |      196    |      656    |      3112   |  5405.75       |  5334           |
+| 50%   |   5000.5  |    394966           | 425124           |     2.71952e+06 |       40      |    9.78045e+12 |                    2004     |         4.02     |  21155.5         |      23832.5         |                   1402    |      391    |     1163    |      4894   |  8269.5        |  8836           |
+| 75%   |   7500.25 |         9.38223e+06 |      9.63611e+06 |     1.45177e+07 |       67      |    9.78083e+12 |                    2011     |         4.18     |  41053.5         |      45915           |                   2744.25 |      885    |     2353.25 |      9287   | 16023.5        | 17304.5         |
+| max   |  10000    |         3.32886e+07 |      3.55342e+07 |     5.63996e+07 |     3455      |    9.79001e+12 |                    2017     |         4.82     |      4.78065e+06 |          4.94236e+06 |                 155254    |   456191    |   436802    |    793319   |     1.4813e+06 |     3.01154e+06 |
 
 ## Missing Values
 
-- date: 99 missing values
-- by: 262 missing values
+- isbn: 700 missing values
+- isbn13: 585 missing values
+- original_publication_year: 21 missing values
+- original_title: 585 missing values
+- language_code: 1084 missing values
