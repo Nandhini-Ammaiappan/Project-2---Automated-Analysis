@@ -68,27 +68,30 @@ def analyze_data(df,file_name,classified_list):
 def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     #repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
-    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
+    file_name_only = file_name.split('.')
+    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only[0]}.git"
     folder_path = os.getcwd() + '/' + file_name 
 
     print('folder 0',folder_path)
     
-    os.chdir(repo_path)
+    os.chdir(folder_path)
     if not os.path.exists(file_name):
         os.makedirs(file_name)
     
     with open("README.md", "w") as file:
         file.write(content)
     
-    repo_path += folder_name[0] + "/"
+    repo_path += folder_name + "/"
     print('repo_path',repo_path)
+    
     readme_file = os.path.join(repo_path, "README.md")
     with open(readme_file, "w") as f:
         f.write(content)
     
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     subprocess.run(["git", "add", readme_file]) 
-    subprocess.run(["git", "commit", "-m", "Add new"])
+    subprocess.run(["git", "commit", "-m", "Add README file"])
+    subprocess.run(["git","remote","add","origin",remote_url])
     subprocess.run(["git", "push", "-u", "origin", "main"])
 
 def validation():
