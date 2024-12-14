@@ -68,9 +68,9 @@ def analyze_data(df,file_name,classified_list):
 def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     repo_path = ""
-    file_name_only = file_name.split('.')
-    print(file_name_only[0])
-    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only[0]}.git"
+    file_name_only,extension = file_name.split('.')
+    
+    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only}.git"
     print(remote_url)
     folder_path = os.getcwd() + '/' + file_name 
 
