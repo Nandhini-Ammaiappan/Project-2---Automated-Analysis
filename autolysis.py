@@ -81,7 +81,7 @@ def save_markdown(file_name, content):
     with open("README.md", "w") as file:
         file.write(content)
     
-    repo_path = folder_name + "/"
+    repo_path = folder_path + "/"
     print('repo_path',repo_path)
     
     readme_file = os.path.join(repo_path, "README.md")
