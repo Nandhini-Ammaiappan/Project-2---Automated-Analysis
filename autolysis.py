@@ -190,8 +190,7 @@ def data_classification():
             unclassified_columns += [column_name] 
         
         numerical_columns = df.select_dtypes(include="float").columns
-        categorical_columns = df.select_dtypes(include ="categorical").columns
-        categorical_columns += df.select_dtypes(include ="int64").columns
+        categorical_columns = df.select_dtypes(exclude ="float").columns
         column_name_list = ', '.join(unclassified_columns)
     
     #use LLM to classify the unclassified columns
