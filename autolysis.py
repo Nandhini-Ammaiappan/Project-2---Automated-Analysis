@@ -198,7 +198,7 @@ def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     REPO_NAME = "Project-2---Automated-Analysis"
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
-    remote_url = f"https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
+    remote_url = f"https://github.com/Nandhini-Ammaiappan/Project-2---Automated-Analysis.git"
 
     #retrieves only the filename to create the folder in git
     file_name_only,extension = file_name.split('.')
@@ -232,8 +232,8 @@ def save_markdown(file_name, content):
         #subprocess.run(["git", "add", repo_folder_path])
         subprocess.run(["git", "add", readme_file],check=True)
         subprocess.run(["git", "commit", "-m", "Add README file"],check=True)
-        #subprocess.run(["git","remote","add",file_name_only,remote_url],check=True)
-        subprocess.run(["git", "push", "-u", file_name_only, "main"],check=True)
+        subprocess.run(["git","remote","add","origin",remote_url],check=True)
+        subprocess.run(["git", "push", "-u", "origin", "main"],check=True)
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 
