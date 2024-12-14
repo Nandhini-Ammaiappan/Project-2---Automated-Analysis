@@ -23,13 +23,13 @@ import matplotlib.pyplot as plt
 
 #global list defined to hold the columns name respectively
 global df
-global geographical_columns = []
-global moneyseries_columns = []
-global timeseries_columns = []
-global others_columns = []
-global unclassified_columns = []
-global numerical_columns = []
-global categorical_columns = []
+geographical_columns = []
+moneyseries_columns = []
+timeseries_columns = []
+others_columns = []
+unclassified_columns = []
+numerical_columns = []
+categorical_columns = []
 
 load_dotenv()
 
@@ -158,7 +158,7 @@ def request_llm (request_text):
 
 def data_classification():
     
-    global df, unclassified_columns,geographical_columns,others_columns,timeseries_columns,moneyseries
+    global df, unclassified_columns, geographical_columns,others_columns,timeseries_columns, moneyseries_columns
     #grouping the columns based on the header names - this is only sample list
     geographical = ['town','city','city/town','region','district','state','country','pincode','zipcode','latitute','longitude','lat','log']
     timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
