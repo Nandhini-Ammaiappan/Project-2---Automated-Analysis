@@ -23,13 +23,13 @@ import matplotlib.pyplot as plt
 
 #global list defined to hold the columns name respectively
 global df
-geographical_columns = []
-moneyseries_columns = []
-timeseries_columns = []
-others_columns = []
-unclassified_columns = []
-numerical_columns = []
-categorical_columns = []
+global geographical_columns = []
+global moneyseries_columns = []
+global timeseries_columns = []
+global others_columns = []
+global unclassified_columns = []
+global numerical_columns = []
+global categorical_columns = []
 
 load_dotenv()
 
