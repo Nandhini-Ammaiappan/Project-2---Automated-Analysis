@@ -153,7 +153,7 @@ def request_llm (request_text):
 
 def data_classification():
     
-    global df
+    global df, unclassified_columns
     #grouping the columns based on the header names - this is only sample list
     geographical = ['town','city','city/town','region','district','state','country','pincode','zipcode','latitute','longitude','lat','log']
     timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
