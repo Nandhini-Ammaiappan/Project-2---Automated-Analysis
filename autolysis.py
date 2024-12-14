@@ -65,21 +65,21 @@ def analyze_data(df,file_name,classified_list):
     
     return story
 
-def save_markdown(file_path, content):
+def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     #repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
-    repo_path = ""
+    folder_path = os.getcwd() + '/' + file_name 
 
-    folder_name = file_path.split('.')
-    print(file_path,folder_name)
+    print('folder 0',folder_path)
+    
+    os.chdir(repo_path)
+    if not os.path.exists(file_name):
+        os.makedirs(file_name)
+    
     with open("README.md", "w") as file:
         file.write(content)
     
-    os.chdir(repo_path)
-    if not os.path.exists(folder_name[0]):
-        os.makedirs(folder_name[0])
-    print('folder_name',folder_name)
     repo_path += folder_name[0] + "/"
     print('repo_path',repo_path)
     readme_file = os.path.join(repo_path, "README.md")
@@ -177,7 +177,7 @@ def main():
     validation()        
     
     #extract only the filename from the argument 
-    file_name = re.split(r'/\[a-zA-Z0-9]*.csv',sys.argv[1])
+    file_name = os.path.basename()
     print('file_name 0',file_name)
     #load the contents of the input file into dataframe
     df = load_csv(sys.argv[1])
@@ -188,9 +188,8 @@ def main():
     #extract only 1/10 records from the input as sample for analysis
     sample_df = df.head(len(df)//10).to_json(orient='records')
     
-    analysis_story = analyze_data(df,file_name[0],classified_list)
-    print('file_name1',file_name[0])
-    save_markdown(file_name[0], analysis_story)
+    analysis_story = analyze_data(df,file_name,classified_list)
+    save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
 if __name__ == "__main__":
