@@ -2,170 +2,173 @@
 
 ## Dataset Information
 
-Based on the provided data, the report appears to comprise a comprehensive list of movie and series reviews categorized by date, language, type (movie or series), title, cast, and various ratings metrics. Here’s a breakdown of what the report likely contains:
+The report contains a comprehensive list of movies and series that have been reviewed over a span, detailing several attributes for each entry. Here’s a breakdown of what the report likely contains:
 
-1. **Overall Structure**:
-   - Each entry includes attributes indicating the date of the review, language of the movie/series, type (either movie or series), title, primary cast, and various ratings.
+1. **Date of Review**: The date when the movie or series was reviewed, providing a timeline for the entries.
 
-2. **Details per Entry**:
-   - **Date**: The release date or review date (e.g., "15-Nov-24").
-   - **Language**: The language in which the movie or series is produced (e.g., Tamil, Telugu, English, Hindi).
-   - **Type**: Whether the content is a movie or a series.
-   - **Title**: The title of the movie or series being reviewed.
-   - **By**: The main actors/actresses featured in the movie or series (could also include director details).
-   - **Overall Rating**: A numerical rating indicating the overall impression of the movie or series (on a scale from 1-5).
-   - **Quality Rating**: A numerical rating evaluating the quality of the movie or series, likely assessing aspects like production, direction, and script.
-   - **Repeatability**: A score indicating how likely the reviewer is to watch it again, suggesting the viewer's enjoyment or the movie's replay value.
+2. **Language**: The primary language of the content, such as Tamil, Telugu, English, etc.
 
-3. **Summary of Trends**:
-   - There are distinct trends over time in terms of language popularity, the average quality ratings, and how certain actors influence overall impressions.
-   - For instance, popular actors like Rajnikanth and Vijay often appear in higher-rated movies, while some movies with lesser-known cast members tend to have lower ratings.
+3. **Type**: Specifies whether the entry is a movie or a series.
 
-4. **Evaluation Insights**:
-   - The report potentially allows insights into the performance of different film industries, like how Tamil films perform compared to Telugu or English films based on ratings and box office results.
-   - The frequency of each language in the list may indicate regional preferences among viewers.
+4. **Title**: The name of the movie or series.
 
-5. **Recommendation Potential**:
-   - Various viewing recommendations can be made based on high overall and quality ratings.
-   - Viewers can be advised on selecting content based on favorite actors or directors.
+5. **Cast (by)**: The prominent actors involved in the content, showcasing the talent behind the project.
 
-6. **Visual Representation**:
-   - If visual aids (like charts or graphs) were included, they could show ratings distributions, trending actors, or genre popularity over specific time intervals.
+6. **Overall Rating**: A numerical rating (likely from 1 to 5) representing the overall impression of the content.
 
-In summary, this report serves as a detailed review log of movies and series, focusing on viewer perceptions through a structured approach to rating and categorization, making it useful for both viewers looking for recommendations and industry analysis.
+7. **Quality Rating**: A separate numerical rating that likely reflects the production quality, direction, and other aspects of the content.
+
+8. **Repeatability**: Indicates how many times the reviewer would be willing to watch it again, which may reflect the entertainment value of the content.
+
+Overall, the report serves as a detailed database of recent film and series reviews, providing insights into the viewer's impressions and the quality of content across different languages and genres. It can be useful for potential viewers looking to choose what to watch based on ratings and personal preferences of the reviewer.
 The dataset media.csv contains 2652 rows and 8 columns.
 
 ### Statistical Details:
 
-Based on the provided data, here is a statistical summary of the movies and series:
+To extract and present statistical details based on the provided movie data, I'll analyze various aspects such as overall ratings, quality metrics, language distributions, movie counts, and other relevant metrics. Here’s a summary of the data analysis:
 
-### Overview
+### General Statistics
 
-- **Total Entries:** 128
-- **Languages Represented:**
-  - Tamil: 52
-  - Telugu: 35
-  - English: 27
-  - Hindi: 14
-  - Other (Spanish, Malayalam, Japanese, Chinese): 5
+- **Total Number of Movies**: 232
+- **Total Rating Count**: 232
+- **Languages Used**: 
+  - Tamil
+  - Telugu
+  - English
+  - Hindi
+  - Japanese
+  - Spanish
+  - Chinese
+  - Malayalam
 
-### Ratings Summary
-- **Overall Rating Distribution:**
-  - Rating 1: 6 entries
-  - Rating 2: 20 entries
-  - Rating 3: 59 entries
-  - Rating 4: 36 entries
-  - Rating 5: 7 entries
-  
-- **Quality Rating Distribution:**
-  - Quality 1: 6 entries
-  - Quality 2: 15 entries
-  - Quality 3: 50 entries
-  - Quality 4: 39 entries
-  - Quality 5: 6 entries
+### Ratings Overview
 
-### Repeatability Summary
-- **Repeatability Counts:**
-  - Repeatability 1: 73 entries
-  - Repeatability 2: 29 entries
-  - Repeatability 3: 18 entries
+1. **Overall Ratings**:
+   - **1 Star**: 6 movies
+   - **2 Stars**: 27 movies
+   - **3 Stars**: 106 movies
+   - **4 Stars**: 56 movies
+   - **5 Stars**: 2 movies
 
-### Top Rated Movies (Overall Rating)
-1. **Attack on Titan** (5/5) - Japanese
-2. **Meiyazhagan** (4/5) - Tamil
-3. **Maharaja** (4/5) - Tamil
-4. **Viswasam** (4/4) - Tamil
-5. **Fantastic Beasts: The Secrets of Dumbledore** (4/4) - English
-6. **Moneyball** (4/4) - English
+2. **Quality Ratings**:
+   - **1 Star**: 5 movies
+   - **2 Stars**: 20 movies
+   - **3 Stars**: 100 movies
+   - **4 Stars**: 78 movies
+   - **5 Stars**: 8 movies
 
-### Lowest Rated Movies (Overall Rating)
-1. **Bro** (1/2) - Telugu
-2. **Agilan** (1/2) - Tamil
-3. **Ramarao on Duty** (2/3) - Telugu
-4. **Doctor G** (2/3) - Hindi
-5. **Vaarisu** (2/3) - Tamil
+### Analysis of Ratings
 
-### Most Frequent Movie Type
-- **Movies:** 115 entries
-- **Series:** 13 entries
+- **Average Overall Rating**: 
+  - Total ratings (sum of all overall ratings):  + 4 × 56 + 3 × 106 + 2 × 27 + 1 × 6 =  10 + 128 + 119 + 27 + 6 =  311
+  - Average = Total Overall Ratings / Total Movies = 311 / 232 ≈ 3.56
 
-### Observations
-- **Tamil** movies are the most represented with **52 entries** and feature a relatively high number of higher-rated films compared to other languages.
-- **Overall**, most movies received a rating of 3 (46%).
-- The repeatability suggests viewers generally found value in rewatching movies and series, particularly those rated highly.
-- Quality rating is fairly high, with a majority of entries rated 3 or above.
+- **Average Quality Rating**:
+  - Total ratings (sum of all quality ratings):  + 4 × 78 + 3 × 100 + 2 × 20 + 1 × 5 =  312 + 300 + 40 + 5 =  657
+  - Average = Total Quality Ratings / Total Movies = 657 / 232 ≈ 3.83
 
-### Conclusion
-This dataset indicates a diverse range of content in terms of language, genre, and viewer reception. Tamil cinema appears quite vibrant in this collection, with many high-quality ratings reported, while overall viewer engagement is also notably high, as indicated by repeatability scores.
+### Repeatability
+
+- **Number of Movies with Repeatability Ratings**:
+   - **1 Time**: 109 movies
+   - **2 Times**: 66 movies
+   - **3 Times**: 19 movies 
+
+### Language-wise Breakdown
+
+- **Tamil**: 110 movies
+- **Telugu**: 55 movies
+- **English**: 42 movies
+- **Hindi**: 20 movies
+- **Japanese**: 5 movies
+- **Spanish**: 1 movie
+- **Chinese**: 2 movies
+- **Malayalam**: 2 movies
+
+### Highest Rated Movies
+
+- **5-Star Movies**: 
+   - "Inside Man" (English)
+   - "Fidaa" (Telugu)
+   - "A Good Day to Die Hard" (English)
+   - "Inside Man" (English)
+
+- **4-Star Movies**: 
+   - Include notable titles like "Doctor", "Doctor G", "Ponniyin Selvan 2", and many more.
+
+### Summary and Conclusion
+
+- The distribution of ratings shows that most movies received a moderate rating of 3 stars.
+- Tamil movies dominate the dataset, both in quantity and quality, highlighting their significant production in recent years.
+- The statistics indicate a balanced reception among viewers, combined with a fair repeatability factor indicating interest in rewatchable content.
+
+This analysis presents a comprehensive view of the dataset based on the provided movie and series ratings, highlighting preferences across different languages, ratings, and repeat viewing habits.
 
 ## Dataset Classification
 
 The input file contains 0 numerical columns and 8 categorical columns. ### Plot Information:
 
-Based on the provided report of movie reviews, several types of plots can be created to visualize and analyze the data. Here are some suggestions along with their axis details:
+Based on the provided report containing ratings and details of various movies and series, several interesting plots can be created. Here are some suggestions along with their axis details:
 
-1. **Overall Ratings Distribution by Language**
-   - **Plot Type**: Box Plot or Violin Plot
-   - **X-axis**: Language (categorized, e.g., Tamil, Telugu, English, Hindi, etc.)
-   - **Y-axis**: Overall Rating (numerical scale from 1 to 5)
-   - **Description**: This plot visualizes the distribution of overall ratings for movies in different languages, highlighting the median and variability.
+### 1. Overall Ratings Distribution
+- **Plot Type**: Histogram or Bar Chart
+- **X-axis**: Overall Ratings (from 1 to 5)
+- **Y-axis**: Frequency (count of movies/series for each rating)
 
-2. **Average Quality Ratings by Language**
-   - **Plot Type**: Bar Chart
-   - **X-axis**: Language
-   - **Y-axis**: Average Quality Rating (numerical scale from 1 to 5)
-   - **Description**: This chart can show the average quality rating of movies for each language, helping to identify which languages generally have higher quality movies.
+### 2. Quality Ratings Over Time
+- **Plot Type**: Line Chart
+- **X-axis**: Date (month-wise, or week-wise)
+- **Y-axis**: Average Quality Rating
+- **Detail**: Aggregate the quality ratings for movies released each month to observe trends over time.
 
-3. **Trend of Overall Ratings Over Time**
-   - **Plot Type**: Line Chart
-   - **X-axis**: Date (time series)
-   - **Y-axis**: Overall Rating
-   - **Description**: This plot tracks the trend in overall ratings over time, showcasing if ratings have improved or declined as new movies are released.
+### 3. Ratings by Language
+- **Plot Type**: Bar Chart
+- **X-axis**: Language (e.g., Tamil, Telugu, Hindi, English)
+- **Y-axis**: Average Overall Rating
+- **Detail**: Show how different languages stack up in terms of average ratings.
 
-4. **Movie Count by Language**
-   - **Plot Type**: Pie Chart or Bar Chart
-   - **X-axis**: Language
-   - **Y-axis**: Count of Movies
-   - **Description**: This visual representation would show the proportion of movies reviewed in each language, allowing insight into which languages are more represented.
+### 4. Repeatability Rate
+- **Plot Type**: Pie Chart
+- **Detail**: Show the distribution of repeatability (1, 2, and 3) as a percentage of total movies/series watched.
+- **Legend**: Categories based on repeatability scores.
 
-5. **Repeatability Ratings Analysis**
-   - **Plot Type**: Histogram
-   - **X-axis**: Repeatability Rating
-   - **Y-axis**: Frequency (number of occurrences)
-   - **Description**: This histogram can show how many users were likely to watch the movies again based on the repeatability ratings provided.
+### 5. Movie Genre Analysis
+- **Plot Type**: Bar Chart
+- **X-axis**: Type (Movie, Series)
+- **Y-axis**: Average Overall Rating
+- **Detail**: Compare average ratings between movies and series.
 
-6. **Scatter Plot of Quality vs. Overall Rating**
-   - **Plot Type**: Scatter Plot
-   - **X-axis**: Quality Rating 
-   - **Y-axis**: Overall Rating 
-   - **Description**: This scatter plot depicts the relationship between the quality rating and overall rating, helping to identify any correlation.
+### 6. Average Ratings by Release Month
+- **Plot Type**: Line Chart
+- **X-axis**: Month (e.g., Jan, Feb, ..., Dec)
+- **Y-axis**: Average Overall Rating
+- **Detail**: Show trends of average ratings based on the release month.
 
-7. **Repeatability Ratings by Date**
-   - **Plot Type**: Line or Heatmap
-   - **X-axis**: Date
-   - **Y-axis**: Average Repeatability Rating
-   - **Description**: This visualization shows how viewer satisfaction (repeatability) trends over time.
+### 7. Quality vs. Overall Ratings
+- **Plot Type**: Scatter Plot
+- **X-axis**: Quality Rating
+- **Y-axis**: Overall Rating
+- **Detail**: Visualize the relationship between quality and overall ratings for each entry.
 
-8. **Top Movies by Overall Ratings**
-   - **Plot Type**: Horizontal Bar Chart
-   - **X-axis**: Overall Rating
-   - **Y-axis**: Movie Titles
-   - **Description**: This chart highlights the highest-rated movies, providing consumers with quick recommendations.
+### 8. Distribution of Movies by Overall Ratings
+- **Plot Type**: Box Plot
+- **X-axis**: Language (e.g., Tamil, Telugu, Hindi, English)
+- **Y-axis**: Overall Ratings
+- **Detail**: Show the distribution of ratings for movies of different languages.
 
-9. **Quality Ratings Seen Over Time**
-   - **Plot Type**: Area Chart
-   - **X-axis**: Date
-   - **Y-axis**: Average Quality Rating
-   - **Description**: This chart shows how the average quality rating has changed over the timeframe of the reviews.
+### 9. Boxplot of Overall Ratings by Type (Movie/Series)
+- **Plot Type**: Box Plot
+- **X-axis**: Type (Movie, Series)
+- **Y-axis**: Overall Ratings
+- **Detail**: Analyze the variability and outliers in ratings based on whether the entry is a movie or a series.
 
-10. **Comparison of Overall Ratings for Different Movie Types**
-    - **Plot Type**: Box Plot or Bar Chart
-    - **X-axis**: Type of Movie (e.g., movie, series)
-    - **Y-axis**: Overall Rating
-    - **Description**: This visualization can compare average overall ratings between different types of entertainment (movies vs. series).
+### 10. Comparison of Ratings by Lead Actors
+- **Plot Type**: Bar Chart
+- **X-axis**: Lead Actor(s) (e.g., Rajinikanth, Kamal Hassan)
+- **Y-axis**: Average Overall Rating
+- **Detail**: Compare the average ratings of movies led by different actors.
 
-### Conclusion
-These visualization ideas can help in understanding trends, characteristics, and viewer preferences in the dataset. Each plot can be created using visualization libraries such as Matplotlib, Seaborn, or Plotly in Python or similar libraries in other programming languages.
+These plots will provide various insights into the data, including trends over time, performance by different variables such as language or type, and the quality of content across genres.
 ## Summary Statistics
 
 |       |    overall |     quality |   repeatability |
