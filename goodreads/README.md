@@ -2,7 +2,7 @@
 
 ## Dataset Information
 
-The dataset goodreads.csv contains 10000 rows and 23 columns.
+Unable to get response from LLM - 400The dataset goodreads.csv contains 10000 rows and 23 columns.
 
 ### Columns:
 

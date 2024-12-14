@@ -122,7 +122,7 @@ def save_markdown(file_name, content):
         file.write(content)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     subprocess.run(["git", "add", repo_folder_path]) 
-    #subprocess.run(["git", "commit", "-m", "Create folder"])
+    subprocess.run(["git", "commit", "-m", "Create folder"])
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git", "push", "-u", "origin", "main"])
