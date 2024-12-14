@@ -192,29 +192,40 @@ def analyze_data(file_name,classified_list,initial_analyis,statistical_analysis)
     return story
 
 def save_markdown(file_name, content):
+    #this function writes the narratives to current working folder locally as well commits to the project folder in git
+    
+    #standard variables defined with the folder definition
     REPO_OWNER = "Nandhini-Ammaiappan"
-    REPO_NAME = "Project-2---Automated-Analysis"
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
+    
+    #retrieves only the filename to create the folder in git
     file_name_only,extension = file_name.split('.')
     
-    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/.git"
-    
+    #gets the current folder in the local drive
     folder_path = os.getcwd() 
 
+    #checks if the local folder/directory is already present, else creates one
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
+    
+    #sets path to current working directory
     os.chdir(folder_path)
 
+    #writes the narrative to the local README
     local_file = os.path.join(folder_path,"README.md")
     with open(local_file, "w") as file:
         file.write(content)
     
+    #defines the repository path in the github, creates folder if not present
     repo_folder_path = os.path.join(repo_path, file_name_only)
-    print(repo_folder_path)
     os.makedirs(repo_folder_path, exist_ok=True)
+    
+    #writes the narrative to the github folder README
     readme_file = os.path.join(repo_folder_path, "README.md")
     with open(readme_file, "w") as file:
         file.write(content)
+
+    #subprocess executed to push the README from github to git repository and commit the same
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
