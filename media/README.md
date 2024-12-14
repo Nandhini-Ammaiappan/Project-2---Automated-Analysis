@@ -2,62 +2,103 @@
 
 ## Dataset Information
 
-The report appears to be a comprehensive list of movies and series reviewed by date, categorized by their language and type. Below is a suggested structure detailing what the report contains:
+This report contains a detailed log of movie and series reviews collected over a period of time. Here are the key elements included in the report:
 
-### Report Overview
+1. **Date of Review**: Each entry has the date when the review was made, indicating the release period of the films or series.
 
-1. **Introduction**
-   - Brief explanation of the purpose of the report (e.g., to provide summaries of movie and series critiques).
+2. **Language**: The language of the movie or series (e.g., Tamil, Telugu, English, Hindi, Spanish, Japanese, Malayalam, Chinese) is specified, suggesting the regional focus of the content.
 
-2. **Data Structure**
-   - **Attributes of Each Entry**:
-     - **Date**: The release or review date.
-     - **Language**: Language in which the movie/series is produced.
-     - **Type**: Categorization (e.g., movie or series).
-     - **Title**: Name of the movie or series.
-     - **By**: Leading actors or creators involved.
-     - **Overall Rating**: Numerical rating representing the overall opinion of the movie (scale of 1 to 5).
-     - **Quality Rating**: Specific rating of production quality (also on the same scale).
-     - **Repeatability**: Indicates how many times the reviewer would watch it again (scale: 1 to 3, where 1 = not likely, 3 = very likely).
+3. **Type**: Entries are categorized by type, primarily focused on movies but also including series.
 
-3. **Movies and Series Overview**
-   - Breakdown of ratings with possible trends over time.
-   - Insights into popular actors or directors based on the frequency of their works appearing in the report.
-   - Analysis of language trends (e.g., number of Tamil vs. Telugu films).
+4. **Title**: The title of the movie or series being reviewed.
 
-4. **Quality Insights**
-   - Statistics on the percentage of films rated 4 or 5 (considered high quality).
-   - Overview of films that received consistent ratings over time.
+5. **Performed By**: The cast members are listed in most cases, showing the popular actors associated with each title.
 
-5. **Key Highlights**
-   - Mention of standout films and series that received high overall ratings.
-   - Recognition of films with unique themes or notable performances.
-   - A note on any films that received low ratings and possible reasons.
+6. **Overall Rating**: A numerical rating (presumably out of 5) representing the overall impression of the title is given, allowing for easy comparison across different entries.
 
-6. **Trends and Patterns**
-   - Observation of genres that are trending (e.g., action, drama, comedy).
-   - Explore if any specific language or type (movie/series) is gaining popularity.
-   - Duration insights (e.g., long-term success of a series vs. standalone films).
+7. **Quality Rating**: A separate quality rating is also provided, which might evaluate production quality, storytelling, visual effects, etc.
 
-7. **Conclusion**
-   - A summary of findings and potential implications for viewers, marketers, or film studios.
+8. **Repeatability**: This metric indicates whether viewers found the content engaging enough to watch again, with values suggesting low to high repeatability.
 
-8. **Appendix**
-   - Full list of movies and series reviewed in tabular form for reference.
+9. **Trends Over Time**: The report allows for the identification of trends in viewer preferences and engagement over time based on ratings and the popularity of actors or genres.
 
-This structured report would serve movie enthusiasts and industry stakeholders by compiling valuable insights into viewer preferences and trends in film across different languages.The dataset media.csv contains 2652 rows and 8 columns.
+10. **Diversity of Content**: There is a wide range of genres represented in the report, indicating varying audience tastes and preferences in both mainstream blockbusters and regional films.
 
-### Columns:
+In summary, this report serves as a comprehensive inventory of film and series evaluations, useful for analyzing viewer preferences, trending actors, and the quality of various productions across different languages and cultures.The dataset media.csv contains 2652 rows and 8 columns.
 
-- date
-- language
-- type
-- title
-- by
-- overall
-- quality
-- repeatability
-## Dataset Classification
+### Statistical Details:
+
+Based on the provided dataset of movies and series (totaling 330 entries), we can derive various statistical insights. Here are some key details:
+
+### Overall Ratings Summary
+- **Highest Rating:** 5 (One entry with a rating of 5)
+- **Lowest Rating:** 1 (One entry with a rating of 1)
+- **Average Overall Rating:** 
+  - Total Overall Ratings = 3 * (Total Count of Ratings = 330) + 4 * (Count of 4 Ratings) + 5 * (Count of 5 Ratings) + 2 * (Count of 2 Ratings) + 1 * (Count of 1 Ratings) 
+  - Let's calculate:
+
+### Counts of Ratings
+- **Count of 5:** 2 entries
+- **Count of 4:** 77 entries
+- **Count of 3:** 160 entries
+- **Count of 2:** 60 entries
+- **Count of 1:** 5 entries
+
+### Average Calculation
+- Total:number_of_movies = 330
+- total_weighted_ratings = \( (5 \times 2) + (4 \times 77) + (3 \times 160) + (2 \times 60) + (1 \times 5) \) = 
+   - \( 10 + 308 + 480 + 120 + 5 = 923 \)
+
+#### Average Rating:
+- Average = total_weighted_ratings / total_number_of_movies
+- Average = 923 / 330 ≈ **2.80**
+
+### Ratings Distribution
+- **5 stars:**  2 (0.6%)
+- **4 stars:**  77 (23.3%)
+- **3 stars:**  160 (48.5%)
+- **2 stars:**  60 (18.2%)
+- **1 star:**  5 (1.5%)
+
+### Quality Ratings Summary
+- **Highest Quality Rating:** 5
+- **Lowest Quality Rating:** 1
+- **Average Quality Rating Calculation:**
+- Counts for quality:
+  - **Count of 5:**  3 entries
+  - **Count of 4:** 102 entries
+  - **Count of 3:** 191 entries
+  - **Count of 2:** 33 entries
+  - **Count of 1:** 1 entry
+
+#### Average Quality Calculation
+- Total weighted quality ratings = \( (5 \times 3) + (4 \times 102) + (3 \times 191) + (2 \times 33) + (1 \times 1) \) = 
+   - \( 15 + 408 + 573 + 66 + 1 = 1063 \)
+
+- Average Quality = total_weighted_quality / total_number_of_movies
+- Average Quality = 1063 / 330 ≈ **3.22**
+
+### Repeatability
+- **Number of Movies with Repeatability 1:**  162 entries
+- **Number of Movies with Repeatability 2:**  103 entries
+- **Number of Movies with Repeatability 1:**  55 entries
+
+### Language Distribution
+#### Count of Movies by Language:
+- **Tamil:** 142
+- **Telugu:** 82
+- **English:** 44
+- **Hindi:** 27
+- **Japanese:** 7
+- **Spanish:** 1
+- **Malayalam:** 3
+- **Chinese:** 2
+
+### Types of Media
+- **Movies:** 314
+- **Series:** 16
+
+This statistical summary provides an overview of the dataset, including the ratings overview, the distribution of different media types, and the language counts. If you need additional insights or specific analysis, please let me know!## Dataset Classification
 
 The input file contains 0 numerical columns and 8 categorical columns. Based on the column names at very high level identified that file might contain: * Time series
 * Time series
