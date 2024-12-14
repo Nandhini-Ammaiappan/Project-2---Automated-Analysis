@@ -209,6 +209,7 @@ def save_markdown(file_name, content):
         file.write(content)
     
     repo_folder_path = os.path.join(repo_path, file_name_only)
+    print(repo_folder_path)
     os.makedirs(repo_folder_path, exist_ok=True)
     readme_file = os.path.join(repo_folder_path, "README.md")
     with open(readme_file, "w") as file:
@@ -324,16 +325,17 @@ def main():
     statistical_analysis = ask_and_reply(user_prompt,sample_data)
 '''
     #scenario 3
-    user_prompt = "Suggest what plots can be created using this report and provide its axis details"
+    '''user_prompt = "Suggest what plots can be created using this report and provide its axis details"
     plot_suggestion = ask_and_reply(user_prompt,sample_data)
     print(plot_suggestion)
+'''
 
-
-    initial_analysis = request_llm(sample_data,"Suggest what this report contains")
+    '''initial_analysis = request_llm(sample_data,"Suggest what this report contains")
     statistical_analysis = request_llm(sample_data,"Provide statistical details based on the data provided")
     #plot_suggestion = request_llm(sample_data,"Suggest what plots can be created using this report and provide its axis details")
     analysis_story = analyze_data(file_name,classified_list,initial_analysis,statistical_analysis)
-    
+    '''
+    analysis_story = "Temp data"
     save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
