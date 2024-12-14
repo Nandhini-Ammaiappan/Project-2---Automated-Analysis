@@ -2,36 +2,18 @@
 
 ## Dataset Information
 
-Unable to get response from LLM - 400The dataset goodreads.csv contains 10000 rows and 23 columns.
+Unable to get response from LLM - 429
+The dataset goodreads.csv contains 10000 rows and 23 columns.
 
-### Columns:
+### Statistical Details:
 
-- book_id
-- goodreads_book_id
-- best_book_id
-- work_id
-- books_count
-- isbn
-- isbn13
-- authors
-- original_publication_year
-- original_title
-- title
-- language_code
-- average_rating
-- ratings_count
-- work_ratings_count
-- work_text_reviews_count
-- ratings_1
-- ratings_2
-- ratings_3
-- ratings_4
-- ratings_5
-- image_url
-- small_image_url
+Unable to get response from LLM - 429
+
 ## Dataset Classification
 
-The input file contains 3 numerical columns and 20 categorical columns. 
+The input file contains 3 numerical columns and 20 categorical columns. ### Plot Information:
+
+
 ## Summary Statistics
 
 |       |   book_id |   goodreads_book_id |     best_book_id |         work_id |   books_count |         isbn13 |   original_publication_year |   average_rating |    ratings_count |   work_ratings_count |   work_text_reviews_count |   ratings_1 |   ratings_2 |   ratings_3 |      ratings_4 |       ratings_5 |
@@ -47,26 +29,8 @@ The input file contains 3 numerical columns and 20 categorical columns.
 
 ## Missing Values
 
-- book_id: 0 missing values
-- goodreads_book_id: 0 missing values
-- best_book_id: 0 missing values
-- work_id: 0 missing values
-- books_count: 0 missing values
 - isbn: 700 missing values
 - isbn13: 585 missing values
-- authors: 0 missing values
 - original_publication_year: 21 missing values
 - original_title: 585 missing values
-- title: 0 missing values
 - language_code: 1084 missing values
-- average_rating: 0 missing values
-- ratings_count: 0 missing values
-- work_ratings_count: 0 missing values
-- work_text_reviews_count: 0 missing values
-- ratings_1: 0 missing values
-- ratings_2: 0 missing values
-- ratings_3: 0 missing values
-- ratings_4: 0 missing values
-- ratings_5: 0 missing values
-- image_url: 0 missing values
-- small_image_url: 0 missing values
