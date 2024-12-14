@@ -69,13 +69,11 @@ def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     repo_path = ""
     file_name_only = file_name.split('.')
-    print(file_name_only)
+    print(file_name_only[0])
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only[0]}.git"
     print(remote_url)
     folder_path = os.getcwd() + '/' + file_name 
 
-    print('folder 0',folder_path)
-    
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     os.chdir(folder_path)
@@ -84,7 +82,6 @@ def save_markdown(file_name, content):
         file.write(content)
     
     repo_path = folder_path + "/"
-    print('repo_path',repo_path)
     
     readme_file = os.path.join(repo_path, "README.md")
     with open(readme_file, "w") as f:
