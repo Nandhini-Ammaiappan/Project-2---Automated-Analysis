@@ -205,7 +205,8 @@ def save_markdown(file_name, content):
         os.makedirs(folder_path)
     os.chdir(folder_path)
 
-    with open("README.md", "w") as file:
+    local_file = os.path.join(folder_path,"README.md")
+    with open(local_file, "w") as file:
         file.write(content)
     
     repo_folder_path = os.path.join(repo_path, file_name_only)
@@ -215,10 +216,10 @@ def save_markdown(file_name, content):
     with open(readme_file, "w") as file:
         file.write(content)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
-    subprocess.run(["git", "add", repo_folder_path]) 
-    subprocess.run(["git", "commit", "-m", "Create folder"])
-    #subprocess.run(["git", "add", readme_file])
-    #subprocess.run(["git", "commit", "-m", "Add README file"])
+    #subprocess.run(["git", "add", repo_folder_path]) 
+    #subprocess.run(["git", "commit", "-m", "Create folder"])
+    subprocess.run(["git", "add", readme_file])
+    subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git", "push", "-u", "origin", "main"])
     
 def validation():
