@@ -213,10 +213,12 @@ def save_markdown(file_name, content):
     #sets path to current working directory
     os.chdir(folder_path)
 
-    #writes the narrative to the local README
-    local_file = os.path.join(folder_path,"README.md")
-    with open(local_file, "w") as file:
+    with open("README.md", "w") as file:
         file.write(content)
+    #writes the narrative to the local README
+    #local_file = os.path.join(folder_path,"README.md")
+    #with open(local_file, "w") as file:
+    #    file.write(content)
     
     #defines the repository path in the github, creates folder if not present
     repo_folder_path = os.path.join(repo_path, file_name_only)
@@ -233,7 +235,7 @@ def save_markdown(file_name, content):
         subprocess.run(["git", "add", readme_file],check=True)
         subprocess.run(["git", "commit", "-m", "Add README file"])
         #subprocess.run(["git","remote","add","origin",remote_url],check=True)
-        subprocess.run(["git", "push"],check=True)
+        subprocess.run(["git", "push", "-u", "origin", "main"],check=True)
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 
