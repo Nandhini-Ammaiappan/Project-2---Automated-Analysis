@@ -196,8 +196,9 @@ def save_markdown(file_name, content):
     
     #standard variables defined with the folder definition
     REPO_OWNER = "Nandhini-Ammaiappan"
+    REPO_NAME = "Project-2---Automated-Analysis"
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
-    remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
+    remote_url = f"https://github.com/{REPO_OWNER}/{REPO_NAME}.git"
 
     #retrieves only the filename to create the folder in git
     file_name_only,extension = file_name.split('.')
