@@ -26,9 +26,9 @@ geographical_columns = []
 moneyseries_columns = []
 timeseries_columns = []
 others_columns = []
-unclassified_columns =[]
+unclassified_columns = []
 column_classification = []
-numerical_columns =[]
+numerical_columns = []
 categorical_columns = []
 
 load_dotenv()
