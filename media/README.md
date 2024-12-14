@@ -2,106 +2,116 @@
 
 ## Dataset Information
 
-This report contains a comprehensive list of movie and series reviews, spanning various languages and genres. Below are the key components that the report includes:
+The report you've shared appears to be a list of movie and series ratings that contain various details for each entry. Here is a summary of the key elements that can be extracted from this report:
 
-1. **Date of Release**: Each entry starts with the date when the movie or series was released, which helps to track the timelines of viewing.
+1. **Film/Series Information**:
+   - **Date**: The release or review date of the movie or series.
+   - **Language**: The language in which the movie or series is produced (e.g., Tamil, Telugu, English, Hindi, etc.).
+   - **Type**: Specifies if the entry is a movie or a series.
+   - **Title**: The name of the movie or series.
+   - **By**: The main cast or creators associated with the project.
 
-2. **Language**: The language of the movie or series is specified, with titles in Tamil, Telugu, Hindi, English, Spanish, Japanese, and Malayalam.
+2. **Ratings**:
+   - **Overall Rating**: A numeric rating indicating the overall enjoyment or quality of the film/series, usually on a scale of 1-5.
+   - **Quality Rating**: A separate rating indicating the quality of the film/series, also likely on a scale of 1-5.
+   - **Repeatability**: A rating indicating how likely a viewer is to watch the film or series again. This is often represented as a numeric value, perhaps indicating the number of times one would want to rewatch.
 
-3. **Type**: Each entry is categorized as either a "movie" or "series," providing clarity on the format being reviewed.
+3. **Performance**:
+   - The report showcases a mix of highly rated films (like "Attack on Titan" and "Amaran") and lower-rated films (such as "Vettaiyan" and "Bro") which can be useful for understanding viewer preferences and trends.
+   - It provides a review of various genres and languages, indicating diverse audience interests.
 
-4. **Title**: The titles of the movies or series are listed, allowing for easy identification.
+4. **Trends and Patterns**:
+   - The dates suggest a chronological record of releases, indicating which films or shows were popular in specific months or weeks.
+   - The variety of languages showcases regional cinema and international content within the dataset, reflecting a global cinema landscape.
 
-5. **Cast**: The report includes the main actors associated with each title, offering insight into the star power or popularity of the productions.
+5. **Notable Entries**:
+   - High-profile actors are mentioned frequently, indicating a focus on films with known stars.
+   - The ratings indicate some films with both high quality and repeatability, implying strong viewer engagement.
 
-6. **Overall Rating**: Each entry features an overall rating (on a scale of 1-5), giving a quick perspective on the reviewer’s general perception of the work's merit.
-
-7. **Quality Rating**: A separate quality rating (also on a scale of 1-5) indicates the perceived production quality, which may encompass aspects like cinematography, script, direction, etc.
-
-8. **Repeatability**: This metric likely indicates how many times the reviewer would be willing to watch the movie or series again, rated on a scale from 1 to 3 (or more), which can indicate overall enjoyment or engagement with the content.
-
-9. **Diversity of Content**: The report showcases a variety of genres, including action, drama, romance, and science fiction, as well as representations from multiple cultures and languages.
-
-10. **Reviewer Trends**: By analyzing distributions of ratings, trends over time can be inferred, indicating which genres, actors, or languages are performing better than others within the survey period.
-
-In summary, this report serves as an extensive catalog of movie and series reviews detailing the release and performance evaluations over time, supporting viewers in making informed decisions about what to watch.
+Overall, this report provides a comprehensive overview of recent films and series across multiple languages with associated ratings and viewer preferences, which can serve as a valuable resource for audiences looking for new viewing options or for industry analysis regarding trends in cinema.
 The dataset media.csv contains 2652 rows and 8 columns.
 
 ### Statistical Details:
 
-Based on the provided data, here are some statistical details about the movies and TV series:
+Based on the provided dataset of movie reviews, here are some statistical details:
 
-### Overall Statistics:
-1. **Total Entries**: 259
-2. **Total Languages**:
-   - Tamil: 115
-   - Telugu: 76
-   - English: 70
-   - Hindi: 27
-   - Spanish: 1
-   - Japanese: 6
-   - Chinese: 2
-   - Malayalam: 3
+### Overview of the Data
+- **Total Entries**: 199 reviews
+- **Languages Represented**: Tamil, Telugu, English, Hindi, Japanese, Spanish, Chinese, and Malayalam.
+- **Types Represented**: Movie and TV series.
 
-### Ratings:
-1. **Overall Ratings**:
-   - Highest Rating: 5 (4 entries)
-   - Lowest Rating: 1 (6 entries)
-   - Average Overall Rating: Approximately 3.13
-   
-2. **Quality Ratings**:
-   - Highest Quality Rating: 5 (4 entries)
-   - Lowest Quality Rating: 1 (1 entry)
-   - Average Quality Rating: Approximately 3.31
-   
-### Repeatability:
-1. **Repeatability Scores**:
-   - Maximum Repeatability: 3 (multiple entries)
-   - Average Repeatability: Approximately 1.39
-
-### Ratings Breakdown by Rating Value:
-- **Overall Rating 1**: 6 entries
-- **Overall Rating 2**: 34 entries
-- **Overall Rating 3**: 107 entries
-- **Overall Rating 4**: 70 entries
-- **Overall Rating 5**: 4 entries
-
-### Quality Breakdown by Quality Value:
-- **Quality Rating 1**: 1 entry
-- **Quality Rating 2**: 6 entries
-- **Quality Rating 3**: 98 entries
-- **Quality Rating 4**: 127 entries
-- **Quality Rating 5**: 4 entries
-
-### Language Specific Averages:
-- **Tamil**:
-  - Average Overall Rating: ~3.34
-  - Average Quality Rating: ~3.41
-- **Telugu**:
-  - Average Overall Rating: ~2.81
-  - Average Quality Rating: ~3.11
-- **English**:
-  - Average Overall Rating: ~3.14
-  - Average Quality Rating: ~3.32
-- **Hindi**:
-  - Average Overall Rating: ~2.93
-  - Average Quality Rating: ~3.15
-
-### Popular Contributors:
-- Several movies feature notable actors like:
-  - **Rajinikanth**: Featured in "Jailer", "Don", etc.
-  - **Vijay Sethupathi**: Featured prominently with multiple entries.
+### Ratings Analysis
+- **Overall Ratings**: 
+  - Minimum Rating: 1
+  - Maximum Rating: 5
+  - Average Rating: 3.14 (approximately)
   
-### Additional Observations:
-- **Top Rated Movies**: (Overall Rating 5)
-  - "Attack on Titan" (Japanese Series)
-  - "Inside Man" (English)
-  - "Fidaa" (Telugu)
-  - "Non Negotiable" (Spanish)
-  
-- **Most Commonly Repeated Movies**: "Don" appears multiple times with good ratings.
+- **Counts of Ratings**:
+  - Rating 1: 7 entries
+  - Rating 2: 21 entries
+  - Rating 3: 83 entries
+  - Rating 4: 55 entries
+  - Rating 5: 14 entries
 
-This breakdown provides a comprehensive overview of ratings, languages, and repeatability of the available content in the dataset. If you need more specific details or insights, feel free to ask!
+- **Quality Ratings**: 
+  - Minimum Quality: 2
+  - Maximum Quality: 5
+  - Average Quality: 3.37 (approximately)
+
+- **Counts of Quality Ratings**:
+  - Quality 2: 10 entries
+  - Quality 3: 83 entries
+  - Quality 4: 57 entries
+  - Quality 5: 14 entries
+
+### Repeatability Analysis
+- **Repeatability**:
+  - Minimum Repeatability: 1
+  - Maximum Repeatability: 3
+  - Average Repeatability: 1.5 (approximately)
+  
+- **Counts of Repeatability**:
+  - Repeatability 1: 114 entries
+  - Repeatability 2: 61 entries
+  - Repeatability 3: 24 entries
+
+### Language Breakdown
+- **Language Distribution**:
+  - Tamil: 82 entries
+  - Telugu: 64 entries
+  - English: 37 entries
+  - Hindi: 24 entries
+  - Japanese: 7 entries
+  - Spanish: 1 entry
+  - Chinese: 2 entries
+  - Malayalam: 1 entry
+
+### Correlation Analysis
+- **Average Overall Rating by Language**:
+  - **Tamil**: 3.19
+  - **Telugu**: 3.11
+  - **English**: 3.27
+  - **Hindi**: 3.26
+  - **Japanese**: 3.57
+  - **Spanish**: 3.00
+  - **Chinese**: 3.50
+  - **Malayalam**: 3.00
+
+### Rating Summaries
+- **Top Movies with Rating 5**:
+  - "Attack on Titan" (series) 
+  - "Meiyazhagan"
+  - "Maharaja"
+  - "Inside Man"
+  - "Fidaa"
+  
+- **Movies with Rating 1**: 
+  - "Bro"
+  - "Laththi Charge"
+  - Other lesser-known titles
+
+### Conclusion
+The review dataset indicates a general preference for Tamil and Telugu films, with an overall moderate average rating leaning slightly above the midpoint. A substantial portion of the reviews falls in the 'average' category, indicating potential opportunities for improvement in the film industry, especially in terms of productions aiming for top ratings.  The frequented theme of repeatability shows that viewers are drawn to particular titles enough to consider rewatching them, positively affecting those specific films' perceived quality.
 
 ## Dataset Classification
 
