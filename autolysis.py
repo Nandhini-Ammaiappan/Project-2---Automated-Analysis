@@ -74,7 +74,7 @@ def save_markdown(file_name, content):
 
     print('folder 0',folder_path)
     
-    if not os.path.exists(folder_name):
+    if not os.path.exists(folder_path):
         os.makedirs(file_name)
     os.chdir(folder_path)
 
