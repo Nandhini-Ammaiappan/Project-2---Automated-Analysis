@@ -5,7 +5,8 @@
 #   "pandas",
 #   "requests",
 #   "load_dotenv",
-#   "tabulate"
+#   "tabulate",
+#   "matplotlib"
 #  ]
 # ///
 
@@ -16,7 +17,19 @@ import re
 import pandas as pd
 from dotenv import load_dotenv
 import subprocess
+import matplotlib.pyplot as plt
 
+
+#global list defined to hold the columns name respectively
+global df
+geographical_columns = []
+moneyseries_columns = []
+timeseries_columns = []
+others_columns = []
+unclassified_columns =[]
+column_classification = []
+numerical_columns =[]
+categorical_columns = []
 
 load_dotenv()
 
@@ -33,13 +46,31 @@ response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/comp
     )
 result = response.json()
 
+def plot_graph:
+#to plot grap based on the columns
+
+for y in numerical_columns:
+    # Create a bar chart
+    plt.bar(categorical_columns, , marker='o')
+
+    # Add title and labels
+    plt.title('Sample BarLine Chart')
+    plt.xlabel(x)
+    plt.ylabel(y)
+
+    plt.savefig('bar_chart.png')
+    # Display the chart
+    plt.show()
+
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
+    global df
     df = pd.read_csv(file_path,encoding='latin-1')
     return df
 
-def analyze_data(df,file_name,classified_list):
+def analyze_data(file_name,classified_list):
     """Perform basic analysis on the DataFrame and create a story."""
+    global df
     shape = df.shape
     columns = df.columns.tolist()
     description = df.describe()
@@ -119,22 +150,15 @@ def request_llm (request_text):
     print(result)
     
 
-def data_classification(df):
+def data_classification():
     
+    global df
     #grouping the columns based on the header names - this is only sample list
     geographical = ['town','city','city/town','region','district','state','country','pincode','zipcode','latitute','longitude','lat','log']
     timeseries = ['seconds','minutes','hour','date','start','end','timestamp','time','month','year','week']
     moneyseries = ['price','cost','profit','loss','expense','expenditure','debit','credit','p/l','gdp','capita','income']
     others = ['name','ratings','overall','id','product','title']
-
-    #list defined to hold the columns name respectively
-    geographical_columns = []
-    moneyseries_columns = []
-    timeseries_columns = []
-    others_columns = []
-    unclassified_columns =[]
-    column_classification = []
-
+ 
     #setting flags to false to idetify the high level classification
     geographical_data_present = timeseries_data_present = moneyseries_data_present = others_data_present = False
     
@@ -164,6 +188,9 @@ def data_classification(df):
         if not (geographical_data_present or timeseries_data_present or moneyseries_data_present or others_data_present):
             unclassified_columns += [column_name] 
         
+        numerical_columns = df.select_dtypes(include="float").columns
+        categorical_columns = df.select_dtypes(include ="categorical").columns
+        categorical_columns += df.select_dtypes(include ="int64").columns
         column_name_list = ', '.join(unclassified_columns)
     
     #use LLM to classify the unclassified columns
@@ -172,6 +199,7 @@ def data_classification(df):
 
 def main():
 
+    global df
     #this function is to validate the input file
     validation()        
     
@@ -182,12 +210,12 @@ def main():
     df = load_csv(sys.argv[1])
     
     #function to classify the contents of the input file based on column names
-    classified_list = data_classification(df)
+    classified_list = data_classification()
     
     #extract only 1/10 records from the input as sample for analysis
     sample_df = df.head(len(df)//10).to_json(orient='records')
     
-    analysis_story = analyze_data(df,file_name,classified_list)
+    analysis_story = analyze_data(file_name,classified_list)
     save_markdown(file_name, analysis_story)
     print("Analysis complete. Check README.md for the results.")
 
