@@ -196,10 +196,8 @@ def save_markdown(file_name, content):
     
     #standard variables defined with the folder definition
     REPO_OWNER = "Nandhini-Ammaiappan"
-    REPO_NAME = "Project-2---Automated-Analysis"
     repo_path = "/mnt/c/Users/Nandhini/OneDrive/Documents/GitHub/Project-2---Automated-Analysis/"
-    remote_url = "https://github.com/Nandhini-Ammaiappan/Project-2---Automated-Analysis.git"
-
+    
     #retrieves only the filename to create the folder in git
     file_name_only,extension = file_name.split('.')
     
@@ -213,12 +211,9 @@ def save_markdown(file_name, content):
     #sets path to current working directory
     os.chdir(folder_path)
 
+    #writes the narrative to the current folder
     with open("README.md", "w") as file:
         file.write(content)
-    #writes the narrative to the local README
-    #local_file = os.path.join(folder_path,"README.md")
-    #with open(local_file, "w") as file:
-    #    file.write(content)
     
     #defines the repository path in the github, creates folder if not present
     repo_folder_path = os.path.join(repo_path, file_name_only)
@@ -230,12 +225,12 @@ def save_markdown(file_name, content):
     readme_file = os.path.join(repo_folder_path, "README.md")
     with open(readme_file, "w") as file:
         file.write(content)
+    
     #subprocess executed to push the README from github to git repository and commit the same
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER],check=True)
     subprocess.run(["git", "add", repo_folder_path],check=True)
     subprocess.run(["git", "add", readme_file],check=True)
     subprocess.run(["git", "commit", "-m", "Add README file"])
-    #subprocess.run(["git","remote","add","origin",remote_url],check=True)
     subprocess.run(["git", "push", "-u", "origin", "main"],check=True)
     
 def validation():
