@@ -232,7 +232,8 @@ def save_markdown(file_name, content):
     subprocess.run(["git", "add", readme_file])
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git","remote","add","origin",remote_url])
-    subprocess.run(["git", "push", "-u", "origin", "main"])
+    #subprocess.run(["git", "push", "-u", "origin", "main"])
+    subprocess.run(["git", "push"])
     
 def validation():
 
