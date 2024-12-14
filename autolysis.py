@@ -231,7 +231,7 @@ def save_markdown(file_name, content):
         subprocess.run(["git", "config", "--global","user.name", REPO_OWNER],check=True)
         subprocess.run(["git", "add", repo_folder_path])
         subprocess.run(["git", "add", readme_file],check=True)
-        subprocess.run(["git", "commit", "-m", "Add README file"],check=True)
+        subprocess.run(["git", "commit", "-m", "Add README file"])
         #subprocess.run(["git","remote","add","origin",remote_url],check=True)
         subprocess.run(["git", "push", "-u", "origin", "main"],check=True)
     except subprocess.CalledProcessError as e:
