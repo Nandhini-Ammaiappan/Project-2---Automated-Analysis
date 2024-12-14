@@ -47,21 +47,21 @@ response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/comp
 result = response.json()
 
 def plot_graph():
-#to plot grap based on the columns
+    #to plot grap based on the columns
 
-# Create a bar chart
-for y in numerical_columns:
-    for x in categorical_columns:
-        plt.bar(x,y, color="skyblue")
+    # Create a bar chart
+    for y in numerical_columns:
+        for x in categorical_columns:
+            plt.bar(x,y, color="skyblue")
 
-        # Add title and labels
-        plt.title('Sample BarChart')
-        plt.xlabel(x)
-        plt.ylabel(y)
+            # Add title and labels
+            plt.title('Sample BarChart')
+            plt.xlabel(x)
+            plt.ylabel(y)
 
-        plt.savefig('{x}.png')
-        # Display the chart
-        plt.show()
+            plt.savefig('{x}.png')
+            # Display the chart
+            plt.show()
 
 def load_csv(file_path):
     """Load a CSV file into a pandas DataFrame."""
