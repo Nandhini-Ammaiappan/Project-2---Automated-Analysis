@@ -225,14 +225,17 @@ def save_markdown(file_name, content):
     readme_file = os.path.join(repo_folder_path, "README.md")
     with open(readme_file, "w") as file:
         file.write(content)
+    try:
 
-    #subprocess executed to push the README from github to git repository and commit the same
-    subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
-    #subprocess.run(["git", "add", repo_folder_path])
-    subprocess.run(["git", "add", readme_file])
-    subprocess.run(["git", "commit", "-m", "Add README file"])
-    subprocess.run(["git","remote","add",file_name_only,remote_url])
-    subprocess.run(["git", "push", "-u", file_name_only, "main"])
+        #subprocess executed to push the README from github to git repository and commit the same
+        subprocess.run(["git", "config", "--global","user.name", REPO_OWNER],check=True)
+        #subprocess.run(["git", "add", repo_folder_path])
+        subprocess.run(["git", "add", readme_file],check=True)
+        subprocess.run(["git", "commit", "-m", "Add README file"],check=True)
+        subprocess.run(["git","remote","add",file_name_only,remote_url],check=True)
+        subprocess.run(["git", "push", "-u", file_name_only, "main"],check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred: {e}")
 
 def validation():
 
