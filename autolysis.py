@@ -69,7 +69,9 @@ def save_markdown(file_name, content):
     REPO_OWNER = "Nandhini-Ammaiappan"
     repo_path = ""
     file_name_only = file_name.split('.')
+    print(file_name_only)
     remote_url = "https://github.com/{REPO_OWNER}/{REPO_NAME}/{file_name_only[0]}.git"
+    print(remote_url)
     folder_path = os.getcwd() + '/' + file_name 
 
     print('folder 0',folder_path)
