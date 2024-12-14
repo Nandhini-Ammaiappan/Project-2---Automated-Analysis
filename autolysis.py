@@ -117,6 +117,8 @@ def save_markdown(file_name, content):
     repo_folder_path = os.path.join(repo_path, file_name_only)
     os.makedirs(repo_folder_path, exist_ok=True)
     readme_file = os.path.join(repo_folder_path, "README.md")
+    with open(readme_file, "w") as file:
+        file.write(content)
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER])
     subprocess.run(["git", "add", repo_folder_path]) 
     subprocess.run(["git", "commit", "-m", "Create folder"])
