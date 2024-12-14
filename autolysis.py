@@ -154,7 +154,7 @@ def request_llm (data,request_text):
     if response.status_code == 200:
         return(response.json()['choices'][0]['message']['content'])
     else:
-        return(f"Unable to get response from LLM - {response.status_cose}")
+        return(f"Unable to get response from LLM - {response.status_code}")
 
 def data_classification():
     
