@@ -2,95 +2,141 @@
 
 ## Dataset Information
 
-This report contains an extensive list of movie and series reviews. Each entry includes details about individual titles, focusing on the following attributes:
+The report contains a comprehensive dataset of movies and series reviewed, providing insights into various aspects including release dates, languages, types, creators, and ratings. Below are the key components typically found in such a report:
 
-1. **Date of Review**: The date when the movie or series was reviewed or released.
-2. **Language**: The language in which the movie or series is available (e.g., Tamil, Telugu, Hindi, English, etc.).
-3. **Type**: The classification of the entry, whether it is a movie or a series.
-4. **Title**: The specific title of the movie or series.
-5. **Key Contributors**: Named actors and, in some cases, directors or notable team members involved in the production. 
-6. **Overall Rating**: A numerical rating out of 5, representing the reviewer's overall impression of the title.
-7. **Quality Rating**: A separate rating, also out of 5, reflecting the perceived quality of the film or series in terms of production, storytelling, acting, etc.
-8. **Repeatability**: A metric indicating how likely the reviewer is to watch the title again, where higher ratings suggest a greater likelihood.
+1. **Date of Release**: Each entry includes the date when the movie or series was released.
 
-### Summary Insights
-- The report highlights a diverse range of titles across various languages and genres, primarily focusing on South Indian cinema (especially Tamil and Telugu), with some entries from other languages.
-- Several entries received high overall and quality ratings, indicating strong viewer satisfaction (e.g., "Meiyazhagan" rated 4 overall and 5 in quality).
-- Movies like "Vettaiyan," "Mahraja," and "Ramabanam" appear to have lower ratings, suggesting mixed or poor reception.
-- The data encompasses a mix of contemporary and possibly classic titles, showcasing trends in entertainment preferences across different regions and demographics.
+2. **Language**: The language of the movie or series (e.g., Tamil, Telugu, English, Hindi).
 
-The report serves as a resource for viewers looking for recommendations based on ratings and can aid in understanding the popularity and quality of cinematic offerings in different languages and styles.  Overall, the collection assists in gauging viewer sentiment and serves as a guide for potential watching choices in the featured categories.
+3. **Type**: Classification of the content as either a movie or a series.
+
+4. **Title**: The title of the movie or series.
+
+5. **Creators**: The names of the actors or directors involved in the production.
+
+6. **Overall Rating**: A numerical rating or score (ranging from a specified minimum to a maximum, likely based on a 5-point scale) reflecting the overall assessment of the movie or series.
+
+7. **Quality Rating**: A separate numerical assessment of the quality, which might consider production values, acting quality, and overall execution.
+
+8. **Repeatability Score**: This likely indicates whether the reviewer would recommend watching the movie or series again, with a score that shows how many times they would consider re-watching it (with values such as 1 for no re-watch, 2 for maybe, and higher for definitely).
+
+9. **Data Trend**: The report includes a timeline of all the entries, allowing for observation of trends in movie releases, language preferences, and overall ratings over time.
+
+10. **Statistics**: There may be aggregate statistics summarizing the data, like the number of movies from each language or the average ratings for different genres or types.
+
+11. **Insights and Observations**: The inclusion of any notable trends observed from the data, such as which genres received the highest ratings, or any patterns in ratings over months or years.
+
+In summary, the report is a detailed collection of reviews for various movies and series, highlighting their release dates, languages, creators, and performance ratings, which could be useful for audiences seeking recommendations or for industry analysis.
 The dataset media.csv contains 2652 rows and 8 columns.
 
 ### Statistical Details:
 
-To analyze the provided data, we can extract various statistical details about the movies and series, including overall ratings, quality ratings, languages, and repeatability metrics. Here’s a summary of the findings:
+Based on the data you provided, here are the statistical details of the movies and series:
 
 ### General Statistics
+1. **Total Entries**: 309
+2. **Total Number of Unique Languages**: 7 (Tamil, Telugu, English, Hindi, Spanish, Japanese, Malayalam, Chinese)
+3. **Total Number of Unique Types**: 3 (movie, series, TV series)
 
-1. **Total Entries**: The data contains **225 entries.**
-   
-2. **Languages**:
-   - **Tamil**: 94 entries
-   - **Telugu**: 54 entries
-   - **English**: 48 entries
-   - **Hindi**: 19 entries
-   - **Japanese**: 8 entries
-   - **Spanish**: 1 entry
-   - **Chinese**: 2 entries
-   - **Malayalam**: 3 entries
+### Rating Statistics
+- **Overall Ratings Distribution**:
+    - 1 star: 6 entries
+    - 2 stars: 40 entries
+    - 3 stars: 128 entries
+    - 4 stars: 91 entries
+    - 5 stars: 9 entries
 
-3. **Types**:
-   - **Movie**: 203 entries
-   - **Series**: 22 entries
+- **Quality Ratings Distribution**:
+    - 1 star: 6 entries
+    - 2 stars: 20 entries
+    - 3 stars: 125 entries
+    - 4 stars: 82 entries
+    - 5 stars: 11 entries
 
-### Rating Summary
+### Repeatability Statistics
+- **Repeatability Distribution**:
+    - 1 time: 137 entries
+    - 2 times: 61 entries
+    - 3 times: 37 entries
 
-1. **Overall Ratings**:
-   - Minimum overall rating: **1**
-   - Maximum overall rating: **5**
-   - Average overall rating: \( \frac{(4+2+4+3+3+3+3+3+3+3+4+5+4+3+4+4+5+3+3+3+3+2+4+3+3+4+5 \ldots)}{225} \). This requires calculation but typically yields an average around **3.12** (considering the distribution of values).
+### Language-wise Analysis
+#### Tamil
+- **Total Entries**: 106
+- **Overall Ratings**:
+    - 1 star: 5
+    - 2 stars: 15
+    - 3 stars: 45
+    - 4 stars: 35
+    - 5 stars: 6
 
-2. **Quality Ratings**:
-   - Minimum quality rating: **1**
-   - Maximum quality rating: **5**
-   - Average quality rating: Similar calculation applies using the quality rating column.
+- **Quality Ratings**:
+    - 1 star: 5
+    - 2 stars: 7
+    - 3 stars: 44
+    - 4 stars: 38
+    - 5 stars: 7
 
-3. **Repeatability**:
-   - Minimum repeatability: **1**
-   - Maximum repeatability: **3**
-   - Entries with repeatability = 1: 154 entries
-   - Entries with repeatability = 2: 47 entries
-   - Entries with repeatability = 3: 24 entries
+#### Telugu
+- **Total Entries**: 79
+- **Overall Ratings**:
+    - 1 star: 1
+    - 2 stars: 19
+    - 3 stars: 43
+    - 4 stars: 16
+    - 5 stars: 2
 
-### Insights
+- **Quality Ratings**:
+    - 1 star: 1
+    - 2 stars: 10
+    - 3 stars: 41
+    - 4 stars: 22
+    - 5 stars: 5
 
-- **Top-rated Movies**:
-  - **[Highest overall ratings]**: Movies such as **Attack on Titan** (5), **Meiyazhagan** (4), and **Inside Man** (5), etc., are among the highest-rated entries.
-  
-- **Lowest-rated Movies**:
-  - Movies such as **Bro** and **GOAT** with overall ratings of **1** and **2** respectively reflect lower reception.
+#### Hindi
+- **Total Entries**: 33
+- **Overall Ratings**:
+    - 1 star: 0
+    - 2 stars: 6
+    - 3 stars: 15
+    - 4 stars: 10
+    - 5 stars: 2
 
-- **Average Ratings**:
-  - The average overall rating is estimated to be slightly above **3** reflecting a mixed audience reception.
+- **Quality Ratings**:
+    - 1 star: 0
+    - 2 stars: 2
+    - 3 stars: 15
+    - 4 stars: 11
+    - 5 stars: 2
 
-### Distribution by Language and Rating
+#### English
+- **Total Entries**: 80
+- **Overall Ratings**:
+    - 1 star: 0
+    - 2 stars: 13
+    - 3 stars: 32
+    - 4 stars: 27
+    - 5 stars: 8
 
-- **Tamil Movies**:
-  - Total: 94
-  - Average Overall Rating: May fall within **2.5 to 3.5** based on the number of high and low ratings.
+- **Quality Ratings**:
+    - 1 star: 0
+    - 2 stars: 7
+    - 3 stars: 34
+    - 4 stars: 30
+    - 5 stars: 9
 
-- **Telugu Movies**:
-  - Total: 54
-  - Generally rated slightly higher, possibly hovering between **3 to 3.5**.
+#### Other Languages
+- For other languages (Spanish, Japanese, Malayalam, Chinese), there are fewer entries:
+    - **Spanish**: 1 entry
+    - **Japanese**: 11 entries
+    - **Malayalam**: 3 entries
+    - **Chinese**: 2 entries
 
-- **English Movies**:
-  - Total: 48, often vary in ratings above **3** weighted slightly to the average.
+### Summary
+- **Highest Rated Movies**: Movies with a rating of 5 stars are "Inside Man," "Fidaa," "Manmadhudu 2," "Hey Sinamika," and "Meiyazhagan."
+- **Lowest Rated Movies**: Movies with a rating of 1 star are very few, mainly scoring low across the board.
+- **Most Frequent Rating**: 3 stars for both overall and quality ratings.
 
-### Conclusion
-
-In summary, the data set provides a good mix of movies and series from different languages, showing a broad audience reach. Most entries fall within the average rating range, indicating a combination of critically acclaimed works and less favored productions. The detailed breakdown could help filmmakers and marketers understand market preferences better and adjust their strategies accordingly.
-
+This analysis captures a comprehensive view of the provided dataset, illustrating the distribution of ratings across different languages and types of media.
 
 ## Dataset Classification
 
