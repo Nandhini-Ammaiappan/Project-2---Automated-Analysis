@@ -222,7 +222,9 @@ def save_markdown(file_name, content):
     
     #defines the repository path in the github, creates folder if not present
     repo_folder_path = os.path.join(repo_path, file_name_only)
-    os.makedirs(repo_folder_path, exist_ok=True)
+    if not os.path.exists(repo_folder_path):
+        os.makedirs(repo_folder_path, exist_ok=True)
+    os.chdir(repo_folder_path)
     
     #writes the narrative to the github folder README
     readme_file = os.path.join(repo_folder_path, "README.md")
@@ -230,7 +232,7 @@ def save_markdown(file_name, content):
         file.write(content)
     #subprocess executed to push the README from github to git repository and commit the same
     subprocess.run(["git", "config", "--global","user.name", REPO_OWNER],check=True)
-    subprocess.run(["git", "add", file_name_only],check=True)
+    subprocess.run(["git", "add", repo_folder_path],check=True)
     subprocess.run(["git", "add", readme_file],check=True)
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git","remote","add","origin",remote_url],check=True)
