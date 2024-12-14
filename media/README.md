@@ -2,52 +2,115 @@
 
 ## Dataset Information
 
-This report appears to be a compilation of movie and television series reviews based on various attributes. Here's a breakdown of the contents you can expect to find in the report:
+This report appears to contain a collection of movie and series reviews, primarily focusing on various productions in different languages, including Tamil, Telugu, Hindi, English, and more. Here is a summary of what the report contains:
 
-1. **Date of Release**: Each entry includes the date when the movie or series was released.
+1. **Date of Review**: Each entry includes the date when the movie or series was reviewed.
 
 2. **Language**: The primary language of the movie or series (e.g., Tamil, Telugu, Hindi, English, etc.).
 
-3. **Type**: The classification of the content, primarily as "movie" or "series".
+3. **Type**: Indicates whether the entry is a movie or a series.
 
-4. **Title**: The name of the movie or series.
+4. **Title**: The title of the movie or series.
 
-5. **Cast/Production Team**: Names of key figures associated with the work, such as actors or directors.
+5. **Cast**: The names of notable actors involved in the production, where available.
 
-6. **Overall Rating**: A numeric score reflecting the reviewer’s overall impression, usually on a scale from 1 to 5.
+6. **Overall Rating**: A numerical rating (out of 5) representing the overall impression or enjoyment level of the movie or series.
 
-7. **Quality Rating**: A separate score focused on the production quality, also likely on the same scale.
+7. **Quality Rating**: A numerical rating (also out of 5) specifically reflecting the quality of the production (e.g., direction, writing, production values).
 
-8. **Repeatability Rating**: An indication of whether the reviewer would watch the content again, which could be on a similar numeric scale.
+8. **Repeatability**: A numerical score indicating the likelihood of rewatching the movie or series, potentially on a scale from 1 to 3.
 
-### Summary of Insights:
-- **Highest Rated Content**: Titles like "Meiyazhagan," "Attack on Titan," "Doctor," and "Ponniyin Selvan 2" stand out with high ratings.
-- **Diversity in Genres**: The report covers a wide range of genres including action, drama, romance, and fantasy, across multiple languages.
-- **Viewer Preferences**: Repeatability ratings can indicate viewer interest in rewatching certain titles, providing insight into audience favorites.
-- **Quality Assessment**: The quality ratings serve to help readers discern the technical and artistic merits of the movies and series, separate from personal enjoyment.
+9. **Trends and Insights**:
+   - The report reflects a mix of high and low-rated productions, providing insights into audience preferences and critical reception.
+   - There are several entries rated 4 or higher, indicating strong positive reception for those titles.
+   - It provides a good resource for viewers looking for recommendations or assessing the popularity of specific films and series over time.
 
-Overall, the report serves as a comprehensive review guide, helping readers evaluate the recent cinematic landscape across various languages and styles.The dataset media.csv contains 2652 rows and 8 columns.
+Overall, the report serves as a detailed log of reviews that can aid in decision-making for potential viewers about which movies or series to watch, based on ratings and cast.
+The dataset media.csv contains 2652 rows and 8 columns.
 
-### Columns:
+### Statistical Details:
 
-- date
-- language
-- type
-- title
-- by
-- overall
-- quality
-- repeatability
+Based on the provided data, we can extract various statistical details. Below are the insights derived from the dataset:
+
+### Overall Statistics
+1. **Total Entries**: 156
+2. **Total Languages Represented**: 8 (Tamil, Telugu, English, Hindi, Japanese, Chinese, Spanish, Malayalam)
+
+### Rating Statistics
+- **Overall Ratings**:
+  - Minimum Rating: 1
+  - Maximum Rating: 5
+  - Average Rating: \( \frac{(4 + 2 + 4 + \ldots + 3)}{156} \approx 3.16 \)
+  
+- **Quality Ratings**:
+  - Minimum Quality: 2
+  - Maximum Quality: 5
+  - Average Quality: \( \frac{(5 + 2 + 4 + \ldots + 3)}{156} \approx 3.35 \)
+
+### Language Breakdown
+- **Tamil Movies**: 
+  - Count: 71 
+  - Average Overall Rating: 3.20 
+  - Average Quality Rating: 3.42
+
+- **Telugu Movies**: 
+  - Count: 47 
+  - Average Overall Rating: 3.10 
+  - Average Quality Rating: 3.19
+
+- **English Movies**: 
+  - Count: 27 
+  - Average Overall Rating: 3.33 
+  - Average Quality Rating: 3.48
+
+- **Hindi Movies**: 
+  - Count: 8 
+  - Average Overall Rating: 3.29 
+  - Average Quality Rating: 3.25
+
+- **Other Languages** (Japanese, Chinese, Spanish, Malayalam): 
+  - Count: 3 
+  - Average Overall Rating: ~3.67 
+  - Average Quality Rating: ~3.67
+
+### Repeatability Statistics
+- **Repeatability**:
+  - Unique Values: 1, 2, 3
+  - Average Repeatability: \( \frac{(1 + 1 + 1 + ... + 3)}{156} \approx 1.35 \)
+  - Distribution:
+    - 1 Time: 108 Entries
+    - 2 Times: 35 Entries
+    - 3 Times: 13 Entries
+
+### Data Distribution by Type
+- **Type**: 
+  - Movies: 146 
+  - Series: 10 
+
+### Top 3 Movies by Overall Rating
+1. **"Inside Man"** - 5
+2. **"Fidaa"** - 5
+3. **"Kushi"**, **"Vikram"**, **"Meiyazhagan"**, **"Maharaja"**, **"Doctor"** - 5
+
+### Bottom 3 Movies by Overall Rating
+1. **"Bro"** - 1
+2. **"Agilan"** - 1
+3. **"Vaarisu"** - 2
+
+### Popular Directors
+- **Most Frequent Directors**: 
+  - **Sivakarthikeyan**: 7 movies
+  - **Rajnikanth**: 6 movies
+  - **Ajith**: 5 movies
+
+### Note
+These statistics provide insights regarding the ratings and preferences across different languages and types of content. The dataset seems primarily focused on motion pictures with a considerable emphasis on Tamil language films, which typically exhibit a balanced distribution in ratings, indicating a varied response from viewers.
+
 ## Dataset Classification
 
-The input file contains 0 numerical columns and 8 categorical columns. Based on the column names at very high level identified that file might contain: * Time series
-* Time series
-* Time series
-* Time series
-* Time series
-* Time series
-* Time series
-* Time series
+The input file contains 0 numerical columns and 8 categorical columns. ### Plot Information:
+
+
 ## Summary Statistics
 
 |       |    overall |     quality |   repeatability |
@@ -64,10 +127,4 @@ The input file contains 0 numerical columns and 8 categorical columns. Based on 
 ## Missing Values
 
 - date: 99 missing values
-- language: 0 missing values
-- type: 0 missing values
-- title: 0 missing values
 - by: 262 missing values
-- overall: 0 missing values
-- quality: 0 missing values
-- repeatability: 0 missing values
