@@ -6,8 +6,7 @@
 #   "requests",
 #   "load_dotenv",
 #   "tabulate",
-#   "matplotlib",
-#   "gitpython"
+#   "matplotlib"
 #  ]
 # ///
 
@@ -17,7 +16,6 @@ import sys
 import re
 import pandas as pd
 from dotenv import load_dotenv
-from git import repo
 import subprocess
 import matplotlib.pyplot as plt
 
