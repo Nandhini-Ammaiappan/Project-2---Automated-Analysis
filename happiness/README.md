@@ -2,7 +2,7 @@
 
 
 HAPPINESS.CSV is used as input for the analysis. This file contains 2363 rows and 11 columns.
-This dataset appears to be related to the measurement of well-being and quality of life across various countries. It includes socio-economic indicators such as 'Log GDP per capita', which suggests it analyzes the relationship between economic factors and life satisfaction ('Life Ladder') over different years. Other factors such as 'Social support', 'Healthy life expectancy at birth', and 'Freedom to make life choices' indicate a multi-dimensional approach to assessing happiness and well-being. The columns 'Generosity', 'Perceptions of corruption', 'Positive affect', and 'Negative affect' further enrich the understanding of subjective life experiences in relation to objective conditions.
+The file contains data related to various factors that influence the well-being and happiness of individuals across different countries over specified years. Key columns include 'Life Ladder', which likely represents life satisfaction levels, and 'Log GDP per capita', suggesting a relationship between economic prosperity and happiness. Other columns such as 'Social support', 'Healthy life expectancy at birth', 'Freedom to make life choices', 'Generosity', 'Perceptions of corruption', and measures of positive and negative affect further enrich the analysis of well-being. The data provides insights into how these factors vary by country and over time.
 Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 ### Statistical Details:
@@ -31,3 +31,6 @@ Data in the file can contain ['categorical', 'numerical', 'time-series']
 - Perceptions of corruption: 125 missing values
 - Positive affect: 24 missing values
 - Negative affect: 16 missing values
+## Graphical Representation of data
+
+![Bar_plot.png](Bar_plot.png)
