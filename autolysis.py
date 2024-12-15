@@ -47,6 +47,32 @@ result = response.json()
 
 function_descriptions_multiple = [
     {
+        "name": "get_column_classification",
+        "description": "To classify the columns based on the data contained",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "Categorical": {
+                    "type": "object",
+                    "description": "List all columns that are categorical in nature",
+                },
+                "Numerical": {
+                    "type": "object",
+                    "description": "List all columns that are numerical",
+                },
+                "Timeseries": {
+                    "type": "object",
+                    "description": "List all columns that contain year,month, date, time etc.,",
+                },
+                "Boolean": {
+                    "type": "object",
+                    "description": "List all columns that only two values like True or False",
+                },
+            },
+            "required": ["Categorical", "Numerical", "Timeseries","Boolean"],
+        },
+    },
+    {
         "name": "get_plot_information",
         "description": "To get details on the plot/graph that can be drawn from the data provided",
         "parameters": {
@@ -92,6 +118,13 @@ function_descriptions_multiple = [
     },
 ]
 
+def get_column_classification(sample_data):
+    # Example output returned from an API or database
+    text_message = {
+        "message": sample_data
+    }
+    return json.dumps(plot_info)
+
 def get_brief_description(sample_data):
     # Example output returned from an API or database
     text_message = {
@@ -118,14 +151,14 @@ def draw_the_plot():
     }
     return json.dumps(plot_data)
 
-def ask_and_reply(prompt,sample_data):
+def ask_and_reply(prompt):
     """Give LLM a given prompt and get an answer."""
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
         "messages": [
-            {"role": "user", "content": prompt+"\n"+sample_data},
+            {"role": "user", "content": prompt},
             ],
         "functions": function_descriptions_multiple,
         "function_call": "auto",
@@ -153,11 +186,6 @@ def plot_graph():
             # Display the chart
             plt.show()
 
-def load_csv(file_path):
-    """Load a CSV file into a pandas DataFrame."""
-    global df
-    df = pd.read_csv(file_path,encoding='latin-1')
-    return df
 
 def analyze_data(file_name,classified_list,initial_analyis,statistical_analysis):
     """Perform basic analysis on the DataFrame and create a story."""
@@ -190,6 +218,24 @@ def analyze_data(file_name,classified_list,initial_analyis,statistical_analysis)
             story += f"- {column}: {num_missing} missing values\n"
     
     return story
+
+def validation():
+
+    # Validates if the the csv file is provided or not
+    if len(sys.argv) != 2:
+        print("Usage: uv run autolysis.py <csv_filename>")
+        sys.exit(1)
+        
+    #validates if the csv file exists in the specified path 
+    if not os.path.isfile(sys.argv[1]):
+        print(f"The file '{sys.argv[1]}' does not exist.")
+        sys.exit(0)
+
+def load_csv(file_path):
+    """Load a CSV file into a pandas DataFrame."""
+    global df
+    df = pd.read_csv(file_path,encoding='latin-1')
+    return df
 
 def save_markdown(file_name, content):
     #this function writes the narratives to current working folder locally as well commits to the project folder in git
@@ -233,19 +279,6 @@ def save_markdown(file_name, content):
     subprocess.run(["git", "commit", "-m", "Add README file"])
     subprocess.run(["git", "push", "-u", "origin", "main"],check=True)
     
-def validation():
-
-    # Validates if the the csv file is provided or not
-    if len(sys.argv) != 2:
-        print("Usage: uv run autolysis.py <csv_filename>")
-        sys.exit(1)
-        
-    #validates if the csv file exists in the specified path 
-    if not os.path.isfile(sys.argv[1]):
-        print(f"The file '{sys.argv[1]}' does not exist.")
-        sys.exit(0)
-
-
 def request_llm (data,request_text):
     response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}","Content-Type":"application/json"},
