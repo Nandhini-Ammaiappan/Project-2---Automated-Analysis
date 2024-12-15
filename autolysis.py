@@ -156,8 +156,21 @@ def draw_the_plot(df,file_name,plot_details):
     plt.ylabel(yaxis)
     
     file_name_only,extension = file_name.split(".")
+    
     #save the plot as PNG file
     plt.savefig(file_name_only + "/" + type + "_plot.png")
+
+    #gets the current folder in the local drive
+    folder_path = os.getcwd() 
+
+    #checks if the local folder/directory is already present, else creates one
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    
+    #sets path to current working directory
+    os.chdir(folder_path)
+    #save the plot as PNG file in local folder
+    plt.savefig("./" + type + "_plot.png")
 
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   ask_and_reply - common function to get the response from LLM
