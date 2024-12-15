@@ -2,7 +2,7 @@
 
 
 MEDIA.CSV is used as input for the analysis. This file contains 2652 rows and 8 columns.
-The file contains data about various items or events, represented by columns such as 'date', 'language', 'type', 'title', 'by', 'overall', 'quality', and 'repeatability'. The 'date' column indicates when each entry was recorded, while 'language' suggests the language of the content. The 'type' column categorizes each entry, and 'title' provides the name or subject of the item. The 'by' column likely indicates the author or source of the entry. The 'overall', 'quality', and 'repeatability' columns suggest a numerical assessment or rating system, where 'overall' might represent a general score, and 'quality' and 'repeatability' assess specific attributes of the entries.
+The file appears to contain data related to reviews or evaluations of various items, likely in the context of language or literary works. The 'date' column suggests temporal data, possibly indicating when reviews were submitted or items were evaluated. 'Language' likely refers to the language in which the item is written or reviewed. 'Type' could categorize the items, while 'title' may indicate the subject of the review. 'By' likely identifies the reviewer or entity providing the evaluation. The columns 'overall', 'quality', and 'repeatability' seem to pertain to ratings or metrics, where 'overall' could represent the general satisfaction level, 'quality' might indicate a measure of excellence, and 'repeatability' may assess the likelihood of consistent performance or satisfaction when evaluated again.
 Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 ### Statistical Details:
@@ -25,4 +25,6 @@ Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 - date: 99 missing values
 - by: 262 missing values
-## Graphical Representation of data![Bar_plot.png](./media/Bar_plot.png)
+## Graphical Representation of data
+
+![Bar_plot.png](media/Bar_plot.png)
