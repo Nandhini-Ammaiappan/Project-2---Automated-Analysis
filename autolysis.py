@@ -38,7 +38,7 @@ function_descriptions_multiple = [
             "type": "object",
             "properties": {
                 "insights": {
-                    "type": "string",
+                    "type": "object",
                     "description": "To provide a complete description of the file based on file and column names",
                     "items":{"type":"string"}
                 }
@@ -83,31 +83,57 @@ function_descriptions_multiple = [
     },
     {
         "name": "get_plot_information",
-        "description": "Get plot type along with the axis details based on the column names",
+        "description": "Get all the types of plot along with the axis details based on the column names",
         "parameters": {
-            "type": "array",
+            "type": "object",
             "properties": {
-                "Plot Type": {
-                    "type": "string",
-                    "description": "The name of the plot, e.g. Bar, Line",
-                },
-                "X-axis": {
-                    "type": "string",
-                    "description": "The name of the column that can used as x axis e.g. language",
-                },
-                "Y-axis": {
-                    "type": "string",
-                    "description": "The name of the column that can used as y axis e.g. rating",
+                "Plots":{
+                    "type":"array",
+                    "description":"List of plots to generate, with details for each plot",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "Plot Type": {
+                                "type": "string",
+                                "description": "The name of the plot, e.g. Bar, Line",
+                                "enum":["bar", "line", "scatter", "histogram", "boxplot"]
+                            },
+                            "X-axis": {
+                                "type": "string",
+                                "description": "The name of the column that can used as x axis e.g. language"
+                            },
+                            "Y-axis": {
+                                "type": "string",
+                                "description": "The name of the column that can used as y axis e.g. rating", 
+                                "nullable":True
+                            },
+                            "Title":{
+                                "type":"string",
+                                "description":"Title of the plot",
+                                "nullable": True
+                            },
+                            "hue": {
+                                "type": "string",
+                                "description": "The column to use for grouping data (optional).",
+                                "nullable": True
+                            },
+                            "color": {
+                                "type": "string",
+                                "description": "Color to use for the plot (optional).",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["Plot Type", "X-axis"],
+                    },
                 },
             },
-            "required": ["Plot Type", "X-axis", "Y-axis"],
         },
     },
     {
         "name": "draw_the_plot",
         "description": "To draw the plot/graph using the data received",
         "parameters": {
-            "type": "array",
+            "type": "object",
             "properties": {
                 "Plot Type": {
                     "type": "string",
@@ -130,9 +156,9 @@ function_descriptions_multiple = [
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   get_plot_information - gets the different plots that can be drawn from the file
 #-------------------------------------------------------------------------------------------------------------------------------------#
-def get_plot_information(columns):
+def get_plot_information(columns,sample_df):
     
-    plot_details = ask_and_reply("Get plot types along with axis information based on following columns : " + str(columns))
+    plot_details = ask_and_reply("Get plot types along with axis information based on following data : " + str(columns) + sample_df)
     return(plot_details)
     
 #-------------------------------------------------------------------------------------------------------------------------------------#
@@ -141,36 +167,39 @@ def get_plot_information(columns):
 def draw_the_plot(df,file_name,plot_details):
     
     #assign to local variables
-    type = plot_details["Plot Type"]
-    xaxis=plot_details["X-axis"]
-    yaxis=plot_details["Y-axis"]
+    data = plot_details["Plots"]
+    plot_df = pd.DataFrame(data)
     
-    #plot creation
-    plt.figure(figsize=(10,6))
-    sns.barplot(data=df,x=xaxis,y=yaxis)
+    # Iterate over rows 
+    for index,row in plot_df: 
+        plot_type = row["Plot Type"]
+        xaxis = row["X-axis"]
+        yaxis = row["Y-axis"]
+        title = row["Title"]
     
-    title = type + " chart"
-    #set plot title and labels
-    plt.title(title)
-    plt.xlabel(xaxis)
-    plt.ylabel(yaxis)
+        #plot creation with  title and labels
+        plt.figure(figsize=(6,6))
+        plt.title(row[title])
+        plt.xlabel(row["X-axis"])
+        plt.ylabel(row["Y-axis"])
+        sns.barplot(data=df,x=row["X-axis"],y=row["Y-axis"])
+        
+        file_name_only,extension = file_name.split(".")
     
-    file_name_only,extension = file_name.split(".")
-    
-    #save the plot as PNG file
-    plt.savefig(file_name_only + "/" + type + "_plot.png")
+        #save the plot as PNG file
+        plt.savefig(file_name_only + "/" + plot_type + "_plot.png")
 
-    #gets the current folder in the local drive
-    folder_path = os.getcwd() 
+        #gets the current folder in the local drive
+        folder_path = os.getcwd() 
 
-    #checks if the local folder/directory is already present, else creates one
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
+        #checks if the local folder/directory is already present, else creates one
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
     
-    #sets path to current working directory
-    os.chdir(folder_path)
-    #save the plot as PNG file in local folder
-    plt.savefig("./" + type + "_plot.png")
+        #sets path to current working directory
+        os.chdir(folder_path)
+        #save the plot as PNG file in local folder
+        plt.savefig("./" + str(index) + plot_type + "_plot.png")
 
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   ask_and_reply - common function to get the response from LLM
@@ -307,7 +336,7 @@ def file_description(file_name,columns):
            
     #sends the file name and all its columns to brief dscription of the file
     insights = ask_and_reply("Provide brief description of the file {file_name} having following columns : " + str(columns))
-    return(insights['insights'])
+    return(insights)
     
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   data_classification - this function groups the columns based 
@@ -363,15 +392,15 @@ def main():
     #function to classify the contents of the input file based on column names
     column_types = data_classification(columns)
     
+    #sample data about 1/10th of original data created
+    sample_data = df.head(len(df)//10).to_json(orient='records')
+    
     #get plot details
-    plot_details = get_plot_information(columns)
+    plot_details = get_plot_information(columns,sample_data)
 
     #draw plots for narratives
     plot = draw_the_plot(df,file_name,plot_details)
 
-    #sample data about 1/10th of original data created
-    sample_data = df.head(len(df)//10).to_json(orient='records')
-    
     #build the narratives in the markdown format
     content = build_narratives(file_name, df, description,column_types)
 
