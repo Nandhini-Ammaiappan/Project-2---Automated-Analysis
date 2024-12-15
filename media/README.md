@@ -2,7 +2,7 @@
 
 
 MEDIA.CSV is used as input for the analysis. This file contains 2652 rows and 8 columns.
-The file contains data related to some evaluations or reviews with the following columns: 'date' indicating when the entry was made, 'language' representing the language of the content, 'type' specifying the kind of content being evaluated, 'title' for the name or title of the content, 'by' to denote who made the entry or evaluation, and 'overall', 'quality', 'repeatability' representing numerical ratings or assessments related to the content.
+{}
 Columns in the file can be grouped into  categorical, numerical, time-series.
 
 ### Statistical Details:
