@@ -2,7 +2,7 @@
 
 
 MEDIA.CSV is used as input for the analysis. This file contains 2652 rows and 8 columns.
-The file contains data related to some evaluation or ratings system, likely gathering user or expert reviews on various items identified by title.
+The file contains data with the following columns: 'date', 'language', 'type', 'title', 'by', 'overall', 'quality', 'repeatability'. The 'date' column likely holds date information regarding when entries were made. The 'language' column likely indicates the language of the content. The 'type' column could specify the category or genre of the entry. The 'title' column likely contains the name or title of the content. The 'by' column may indicate the author or creator. The 'overall' column seems to be a numerical representation, possibly a rating or score. The 'quality' column likely assesses the quality of the content, possibly also a numeric value, while 'repeatability' might indicate how often a certain observation can be repeated, possibly on a categorical or numerical scale.
 Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 ### Statistical Details:
