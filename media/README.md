@@ -2,7 +2,7 @@
 
 
 MEDIA.CSV is used as input for the analysis. This file contains 2652 rows and 8 columns.
-The file contains data related to some form of evaluation or review process. The 'date' column suggests a timescale aspect, possibly indicating when the reviews or evaluations took place. The 'language' column likely categorizes the reviews by the languages they are written in. The 'type' and 'title' columns could provide classification for the subject or category of the review. The 'by' column might indicate the author or creator of the review. Finally, the 'overall', 'quality', and 'repeatability' columns seem to reflect quantitative measures of the evaluations, allowing for a numerical assessment of the reviewed items.
+The file contains data related to some form of assessments or evaluations, likely linked with different languages or types. The 'date' column suggests a time context for the records. The 'language' column indicates that assessments may be categorized based on the languages involved. The 'type' column potentially denotes different categories or kinds of evaluations. 'Title' refers to the name or designation of each record, 'by' likely denotes the author or creator of the assessment. The numerical columns 'overall', 'quality', and 'repeatability' suggest performance metrics or scores that could be used to quantify the effectiveness or reliability of each entry.
 Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 ### Statistical Details:
