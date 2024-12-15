@@ -33,13 +33,13 @@ api_key = os.environ["AIPROXY_TOKEN"]
 function_descriptions_multiple = [
     {
         "name": "get_brief_description",
-        "description": "With help of file name and listed column names analyse and provide a brief description on what type of data held in the file",
+        "description": "With help of file name and listed column names provide complete description on what type of data held in the file",
         "parameters": {
             "type": "object",
             "properties": {
                 "insights": {
                     "type": "string",
-                    "description": "To provide a short description of the file based on file and column names in not more than 200 words",
+                    "description": "To provide a complete description of the file based on file and column names",
                     "items":{"type":"string"}
                 }
             },
@@ -85,7 +85,7 @@ function_descriptions_multiple = [
         "name": "get_plot_information",
         "description": "Get plot type along with the axis details based on the column names",
         "parameters": {
-            "type": "object",
+            "type": "array",
             "properties": {
                 "Plot Type": {
                     "type": "string",
@@ -107,7 +107,7 @@ function_descriptions_multiple = [
         "name": "draw_the_plot",
         "description": "To draw the plot/graph using the data received",
         "parameters": {
-            "type": "object",
+            "type": "array",
             "properties": {
                 "Plot Type": {
                     "type": "string",
@@ -215,7 +215,7 @@ def build_narratives(file_name,df,description,column_types):
     story += f"{description}\n"
     story += f"{column_types}\n\n"
     
-    #statisitcal details
+    #statistical details
     story += f"### Statistical Details:\n\n"
     #story += f'{statistical_analysis}'
     
@@ -243,8 +243,7 @@ def validation():
     if len(sys.argv) != 2:
         print("Usage: uv run autolysis.py <csv_filename>")
         sys.exit(1)
-        
-    #validates if the csv file exists in the specified path 
+
     if not os.path.isfile(sys.argv[1]):
         print(f"The file '{sys.argv[1]}' does not exist.")
         sys.exit(0)
@@ -327,7 +326,7 @@ def data_classification(columns):
     timeseries_columns   = classification['Timeseries']
     unclassified_columns = classification['Others']
 
-    text = "Data in the file can contain "
+    text = "Columns in the file can be grouped into  "
     if len(boolean_columns) > 0:
         text_list += ["boolean"]
     if len(categorical_columns) > 0:
@@ -338,7 +337,7 @@ def data_classification(columns):
         text_list += ["time-series"] 
     
     if len(text_list) > 0:
-        return(text+str(text_list))
+        return(text + ', '.join(text_list) + '.')
     else:
         return("Unable to classify the columns through LLM")
 #-------------------------------------------------------------------------------------------------------------------------------------#
