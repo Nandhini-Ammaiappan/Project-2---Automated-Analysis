@@ -2,7 +2,7 @@
 
 
 MEDIA.CSV is used as input for the analysis. This file contains 2652 rows and 8 columns.
-The file contains data related to some evaluation or review of items, possibly in a linguistic or entertainment context. The columns suggest it includes a date when the evaluation occurred, the language of the content being evaluated, the type of evaluation (e.g., might indicate categories such as article, video, etc.), the title of the content, the author or creator (indicated by 'by'), and various ratings such as overall quality, quality, and repeatability. This indicates a structured approach to collecting feedback on content or products over time.
+The file contains data related to some evaluation or ratings system, likely gathering user or expert reviews on various items identified by title.
 Data in the file can contain ['categorical', 'numerical', 'time-series']
 
 ### Statistical Details:
