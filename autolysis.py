@@ -177,7 +177,7 @@ def draw_the_plot(df,file_name,plot_details):
 #-------------------------------------------------------------------------------------------------------------------------------------#
 def ask_and_reply(prompt):
     
-    response = requests.post("https://api.openai.com/v1/completions",
+    response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
