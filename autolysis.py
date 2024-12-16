@@ -309,7 +309,7 @@ def file_description(file_name,columns):
            
     #sends the file name and all its columns to brief dscription of the file
     insights = ask_and_reply("Provide brief description of the file {file_name} having following columns : " + str(columns))
-    return(insights['insights'])
+    return(insights)
     
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   data_classification - this function groups the columns based 
