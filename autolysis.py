@@ -25,8 +25,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #setting API key for API request 
-api_key = os.environ["AIPROXY_TOKEN"] 
-
+api_key = os.environ["AIPROXY_TOKEN"]
+    
 #-------------------------------------------------------------------------------------------------------------------------------------#
 #   function_descriptions_multiple - setting the different function calls for API
 #-------------------------------------------------------------------------------------------------------------------------------------#
@@ -206,7 +206,7 @@ def draw_the_plot(df,file_name,plot_details):
 #-------------------------------------------------------------------------------------------------------------------------------------#
 def ask_and_reply(prompt):
     
-    response = requests.post("https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+    response = requests.post("https://api.openai.com/v1/completions",
     headers={"Authorization": f"Bearer {api_key}"},
     json={
         "model": "gpt-4o-mini",
@@ -221,9 +221,11 @@ def ask_and_reply(prompt):
     
     if response.status_code == 200:
         output = response.json()['choices'][0]['message']['function_call']['arguments']
+        print(output)
         structured_output = json.loads(output)
         return structured_output
     else:
+        print(f"Unable to get response from LLM - {response.status_code}")
         return(f"Unable to get response from LLM - {response.status_code}")
 
 #-------------------------------------------------------------------------------------------------------------------------------------#
